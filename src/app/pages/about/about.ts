@@ -12,25 +12,24 @@ export class About {
 
   pgpCopied = signal(false);
 
-  skills = [
+  readonly skills = [
     { category: 'Offensive Security', items: ['Penetration Testing', 'Red Team Operations', 'Vulnerability Analysis', 'Exploit Development'] },
     { category: 'Application Security', items: ['Web App Pentesting', 'API Security', 'OWASP Top 10', 'Secure Code Review'] },
     { category: 'Tools', items: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Ghidra'] },
     { category: 'Platforms', items: ['TryHackMe', 'HackTheBox', 'CTF Competitions', 'Vulnerable Labs'] }
-  ];
+  ] as const;
 
-  certifications = [
+  readonly certifications = [
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
     { name: 'THM Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
-  ];
+  ] as const;
 
-  timeline = [
+  readonly timeline = [
     { year: 'Now', title: 'Jr Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
     { year: '2024', title: 'Security Journey', description: 'Computer Engineer diving deep into offensive security and AppSec.' }
-  ];
+  ] as const;
 
-  // PGP Public Key
-  pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+  private readonly pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: Keybase OpenPGP v2.1.17
 Comment: https://keybase.io/crypto
 
@@ -110,10 +109,27 @@ CXqB+I2Xc0Oi0J75
 
   copyPgpKey(): void {
     if (isPlatformBrowser(this.platformId)) {
-      navigator.clipboard.writeText(this.pgpPublicKey).then(() => {
-        this.pgpCopied.set(true);
-        setTimeout(() => this.pgpCopied.set(false), 2000);
-      });
+      navigator.clipboard.writeText(this.pgpPublicKey)
+        .then(() => {
+          this.pgpCopied.set(true);
+          setTimeout(() => this.pgpCopied.set(false), 2000);
+        })
+        .catch(() => {
+          // Fallback: create textarea and copy
+          const textarea = document.createElement('textarea');
+          textarea.value = this.pgpPublicKey;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            this.pgpCopied.set(true);
+            setTimeout(() => this.pgpCopied.set(false), 2000);
+          } finally {
+            document.body.removeChild(textarea);
+          }
+        });
     }
   }
 }

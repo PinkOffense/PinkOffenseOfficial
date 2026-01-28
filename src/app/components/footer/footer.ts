@@ -11,8 +11,6 @@ export class Footer {
   currentYear = new Date().getFullYear();
 
   socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/PinkOffense', icon: 'github' },
-    { name: 'LinkedIn', url: '#', icon: 'linkedin' },
-    { name: 'Twitter', url: '#', icon: 'twitter' }
+    { name: 'GitHub', url: 'https://github.com/PinkOffense', icon: 'github' }
   ];
 }

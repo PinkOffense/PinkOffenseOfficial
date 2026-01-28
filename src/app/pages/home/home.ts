@@ -16,33 +16,33 @@ export class Home implements OnInit, OnDestroy {
   typedText = signal('');
   showCursor = signal(true);
 
-  private fullText = 'Breaking things to make them stronger';
+  private fullText = 'QA by day, pentester in training by night';
   private charIndex = 0;
 
   skills = [
-    { name: 'Penetration Testing', icon: '🔓' },
-    { name: 'Vulnerability Research', icon: '🔍' },
-    { name: 'Malware Analysis', icon: '🦠' },
-    { name: 'Web Application Security', icon: '🌐' },
-    { name: 'Network Security', icon: '📡' },
-    { name: 'Reverse Engineering', icon: '⚙️' }
+    { name: 'QA Testing', icon: '🧪' },
+    { name: 'Bug Hunting', icon: '🐛' },
+    { name: 'Web Security', icon: '🌐' },
+    { name: 'CTF Challenges', icon: '🚩' },
+    { name: 'Learning Pentesting', icon: '🔓' },
+    { name: 'Security Tools', icon: '🛠️' }
   ];
 
   featuredProjects = [
     {
-      title: 'Security Scanner',
-      description: 'Automated vulnerability detection tool for web applications',
-      tags: ['Python', 'Security', 'Automation']
-    },
-    {
       title: 'CTF Writeups',
-      description: 'Collection of capture the flag challenge solutions',
-      tags: ['CTF', 'Writeups', 'Learning']
+      description: 'My solutions and learnings from capture the flag challenges',
+      tags: ['CTF', 'Learning', 'Writeups']
     },
     {
-      title: 'Exploit Development',
-      description: 'Research and responsible disclosure of vulnerabilities',
-      tags: ['Research', 'CVE', 'Exploits']
+      title: 'Security Notes',
+      description: 'Documentation of my security learning journey',
+      tags: ['Notes', 'Learning', 'Security']
+    },
+    {
+      title: 'QA & Security',
+      description: 'Bridging QA testing with security testing practices',
+      tags: ['QA', 'Security', 'Testing']
     }
   ];
 

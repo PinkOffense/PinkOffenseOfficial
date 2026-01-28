@@ -11,11 +11,11 @@
 If you discover a security vulnerability in this project, please report it responsibly:
 
 ### Preferred Method: Encrypted Email
-1. Obtain my PGP public key from [keybase.io/pinkoffnse](https://keybase.io/pinkoffnse)
+1. Obtain my PGP public key from [keybase.io/pinkoffense2](https://keybase.io/pinkoffense2)
 2. Send an encrypted email to: pinkoffenseofficial@gmail.com
 
 ### Alternative: Keybase
-Contact me directly via Keybase: [keybase.io/pinkoffnse](https://keybase.io/pinkoffnse)
+Contact me directly via Keybase: [keybase.io/pinkoffense2](https://keybase.io/pinkoffense2)
 
 ### What to Include
 - Description of the vulnerability

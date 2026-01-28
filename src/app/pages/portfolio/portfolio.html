@@ -1,9 +1,9 @@
 <section class="portfolio-hero">
   <div class="container">
-    <span class="portfolio-hero__label">&lt;/portfolio&gt;</span>
-    <h1 class="portfolio-hero__title">My Work</h1>
+    <span class="portfolio-hero__label">&lt;/resources&gt;</span>
+    <h1 class="portfolio-hero__title">Red Team Resources</h1>
     <p class="portfolio-hero__subtitle">
-      Security tools, research, and CTF writeups. Building solutions to make the digital world safer.
+      Playbooks, cheat sheets, and security fundamentals. Open-source resources for offensive security.
     </p>
   </div>
 </section>
@@ -31,11 +31,10 @@
             }
             <div class="project-card__icon">
               @switch (project.category) {
-                @case ('tools') { <span>🔧</span> }
-                @case ('research') { <span>🔬</span> }
-                @case ('ctf') { <span>🚩</span> }
-                @case ('web') { <span>🌐</span> }
-                @default { <span>📁</span> }
+                @case ('cheatsheet') { <span>&#x1F4CB;</span> }
+                @case ('certification') { <span>&#x1F3C6;</span> }
+                @case ('fundamentals') { <span>&#x1F4D6;</span> }
+                @default { <span>&#x1F4C1;</span> }
               }
             </div>
           </div>
@@ -51,7 +50,7 @@
 
           <div class="project-card__links">
             @if (project.links.github) {
-              <a [href]="project.links.github" target="_blank" rel="noopener" class="project-card__link">
+              <a [href]="project.links.github" target="_blank" rel="noopener noreferrer" class="project-card__link">
                 <span>GitHub</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -59,7 +58,7 @@
               </a>
             }
             @if (project.links.demo) {
-              <a [href]="project.links.demo" target="_blank" rel="noopener" class="project-card__link">
+              <a [href]="project.links.demo" target="_blank" rel="noopener noreferrer" class="project-card__link">
                 <span>Live Demo</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -84,9 +83,9 @@
 <section class="cta-section section">
   <div class="container">
     <div class="cta-box">
-      <h2>Want to Collaborate?</h2>
-      <p>I'm always interested in working on security projects and research. Let's build something together.</p>
-      <a href="https://github.com/PinkOffense" target="_blank" class="btn btn--primary">
+      <h2>Want to Contribute?</h2>
+      <p>All resources are open-source. Feel free to contribute, suggest improvements, or use them in your security journey.</p>
+      <a href="https://github.com/PinkOffense" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
         View GitHub Profile
       </a>
     </div>

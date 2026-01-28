@@ -25,7 +25,7 @@ export class About {
   ] as const;
 
   readonly timeline = [
-    { year: 'Now', title: 'Jr Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
+    { year: 'Now', title: 'Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
     { year: '2024', title: 'Security Journey', description: 'Computer Engineer diving deep into offensive security and AppSec.' }
   ] as const;
 

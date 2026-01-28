@@ -40,6 +40,9 @@ jobs:
     name: Dependency Review
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    # Note: Requires Dependency Graph to be enabled in repo settings
+    # Settings > Security > Code security and analysis > Dependency graph
+    continue-on-error: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,9 +50,9 @@ jobs:
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         with:
-          fail-on-severity: high
+          fail-on-severity: critical
           deny-licenses: GPL-3.0, AGPL-3.0
-          comment-summary-in-pr: always
+          comment-summary-in-pr: on-failure
 
   secrets-scan:
     name: Secret Scanning

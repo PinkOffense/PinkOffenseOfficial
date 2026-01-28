@@ -97,62 +97,42 @@
 
 <section class="contact-section section" id="contact">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <span class="section__label">// CONTACT</span>
-        <h2 class="section__title">Let's Connect</h2>
-        <p class="contact-info__text">
-          Whether you have a security concern, want to collaborate on a project,
-          or just want to chat about cybersecurity, I'd love to hear from you.
-        </p>
+    <div class="section__header">
+      <span class="section__label">// SECURE CONTACT</span>
+      <h2 class="section__title">Get In Touch</h2>
+    </div>
 
-        <div class="contact-info__socials">
-          <h4>Find me on</h4>
-          <div class="social-links">
-            @for (link of socialLinks; track link.name) {
-              <a [href]="link.url" target="_blank" rel="noopener" class="social-link">
-                {{ link.name }}
-              </a>
-            }
-          </div>
-        </div>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-card__icon">&#x2709;</div>
+        <h3 class="contact-card__title">Email</h3>
+        <p class="contact-card__text">For general inquiries and collaboration</p>
+        <a href="mailto:pinkoffenseofficial&#64;gmail.com" class="contact-card__link">
+          pinkoffenseofficial&#64;gmail.com
+        </a>
       </div>
 
-      <div class="contact-form-wrapper">
-        @if (!formSubmitted()) {
-          <form class="contact-form" (submit)="onSubmit($event)">
-            <div class="contact-form__group">
-              <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name" required />
-            </div>
-            <div class="contact-form__group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="your@email.com" required />
-            </div>
-            <div class="contact-form__group">
-              <label for="subject">Subject</label>
-              <select id="subject" required>
-                <option value="">Select a topic</option>
-                <option value="security">Security Inquiry</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="consulting">Consulting</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="contact-form__group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
-          </form>
-        } @else {
-          <div class="contact-form__success">
-            <div class="contact-form__success-icon">&#x2714;</div>
-            <h3>Message Sent!</h3>
-            <p>Thanks for reaching out. I'll get back to you soon.</p>
-          </div>
-        }
+      <div class="contact-card">
+        <div class="contact-card__icon">&#x2318;</div>
+        <h3 class="contact-card__title">GitHub</h3>
+        <p class="contact-card__text">Check out my projects and contributions</p>
+        <a href="https://github.com/PinkOffense" target="_blank" rel="noopener" class="contact-card__link">
+          github.com/PinkOffense
+        </a>
       </div>
+
+      <div class="contact-card contact-card--pgp">
+        <div class="contact-card__icon">&#x1F510;</div>
+        <h3 class="contact-card__title">Encrypted Contact</h3>
+        <p class="contact-card__text">For sensitive security matters, use PGP</p>
+        <button class="contact-card__link contact-card__pgp-btn" (click)="copyPgpKey()">
+          {{ pgpCopied() ? 'Copied!' : 'Copy PGP Public Key' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-note">
+      <p>&#x26A0; For responsible disclosure of security vulnerabilities, please use encrypted email.</p>
     </div>
   </div>
 </section>

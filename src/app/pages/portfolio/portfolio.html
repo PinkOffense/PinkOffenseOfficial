@@ -1,0 +1,94 @@
+<section class="portfolio-hero">
+  <div class="container">
+    <span class="portfolio-hero__label">&lt;/portfolio&gt;</span>
+    <h1 class="portfolio-hero__title">My Work</h1>
+    <p class="portfolio-hero__subtitle">
+      Security tools, research, and CTF writeups. Building solutions to make the digital world safer.
+    </p>
+  </div>
+</section>
+
+<section class="portfolio section">
+  <div class="container">
+    <div class="portfolio__filters">
+      @for (cat of categories; track cat.id) {
+        <button
+          class="portfolio__filter"
+          [class.portfolio__filter--active]="activeFilter() === cat.id"
+          (click)="setFilter(cat.id)"
+        >
+          {{ cat.name }}
+        </button>
+      }
+    </div>
+
+    <div class="portfolio__grid">
+      @for (project of filteredProjects; track project.id) {
+        <article class="project-card" [class.project-card--featured]="project.featured">
+          <div class="project-card__header">
+            @if (project.featured) {
+              <span class="project-card__badge">Featured</span>
+            }
+            <div class="project-card__icon">
+              @switch (project.category) {
+                @case ('tools') { <span>🔧</span> }
+                @case ('research') { <span>🔬</span> }
+                @case ('ctf') { <span>🚩</span> }
+                @case ('web') { <span>🌐</span> }
+                @default { <span>📁</span> }
+              }
+            </div>
+          </div>
+
+          <h3 class="project-card__title">{{ project.title }}</h3>
+          <p class="project-card__description">{{ project.description }}</p>
+
+          <div class="project-card__tags">
+            @for (tag of project.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+
+          <div class="project-card__links">
+            @if (project.links.github) {
+              <a [href]="project.links.github" target="_blank" rel="noopener" class="project-card__link">
+                <span>GitHub</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            }
+            @if (project.links.demo) {
+              <a [href]="project.links.demo" target="_blank" rel="noopener" class="project-card__link">
+                <span>Live Demo</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            }
+            @if (project.links.writeup) {
+              <a [href]="project.links.writeup" class="project-card__link">
+                <span>Read Writeup</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Want to Collaborate?</h2>
+      <p>I'm always interested in working on security projects and research. Let's build something together.</p>
+      <a href="https://github.com/PinkOffense" target="_blank" class="btn btn--primary">
+        View GitHub Profile
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,206 @@
+$accent-pink: #ff2d75;
+$accent-cyan: #00f0ff;
+$accent-purple: #b14aed;
+$bg-primary: #0a0a0f;
+$bg-secondary: #12121a;
+$text-secondary: #b0b0c0;
+
+.portfolio-hero {
+  padding: 10rem 0 4rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgba($accent-pink, 0.05) 0%, transparent 100%);
+
+  &__label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: $accent-cyan;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, $text-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.portfolio {
+  &__filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__filter {
+    padding: 0.75rem 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $text-secondary;
+    background: transparent;
+    border: 1px solid rgba(#fff, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #fff;
+      border-color: rgba($accent-pink, 0.5);
+    }
+
+    &--active {
+      color: #fff;
+      background: rgba($accent-pink, 0.2);
+      border-color: $accent-pink;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: 400px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.project-card {
+  background: $bg-secondary;
+  border: 1px solid rgba($accent-pink, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: $accent-pink;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba($accent-pink, 0.15);
+  }
+
+  &--featured {
+    border-color: rgba($accent-pink, 0.3);
+    background: linear-gradient(135deg, rgba($accent-pink, 0.05), rgba($accent-purple, 0.05));
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  &__badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, $accent-pink, $accent-purple);
+    color: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba($accent-cyan, 0.1);
+    border: 1px solid rgba($accent-cyan, 0.2);
+    border-radius: 8px;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  &__description {
+    color: $text-secondary;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(#fff, 0.1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: $accent-cyan;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $accent-pink;
+
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+.cta-section {
+  background: linear-gradient(135deg, rgba($accent-pink, 0.1), rgba($accent-purple, 0.1));
+}
+
+.cta-box {
+  text-align: center;
+  padding: 4rem;
+  background: $bg-secondary;
+  border: 1px solid rgba($accent-pink, 0.3);
+  border-radius: 12px;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

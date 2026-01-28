@@ -1,0 +1,51 @@
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a routerLink="/" class="footer__logo">
+          <span class="footer__logo-icon">&#x2726;</span>
+          <span>B1NARYBUN</span>
+        </a>
+        <p class="footer__tagline">Security Researcher & Ethical Hacker</p>
+        <p class="footer__description">
+          Breaking things to make them stronger. Dedicated to making the digital world more secure.
+        </p>
+      </div>
+
+      <div class="footer__links">
+        <h4>Navigation</h4>
+        <nav>
+          <a routerLink="/">Home</a>
+          <a routerLink="/portfolio">Portfolio</a>
+          <a routerLink="/blog">Blog</a>
+          <a routerLink="/about">About</a>
+        </nav>
+      </div>
+
+      <div class="footer__links">
+        <h4>Connect</h4>
+        <nav>
+          @for (link of socialLinks; track link.name) {
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+              {{ link.name }}
+            </a>
+          }
+        </nav>
+      </div>
+
+      <div class="footer__contact">
+        <h4>Get In Touch</h4>
+        <p>Interested in working together or have a security concern?</p>
+        <a routerLink="/about" class="footer__contact-btn">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ currentYear }} B1naryBun. All rights reserved.</p>
+      <p class="footer__built">
+        <span class="footer__status"></span>
+        Built with Angular &amp; Three.js
+      </p>
+    </div>
+  </div>
+</footer>

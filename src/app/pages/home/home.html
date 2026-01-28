@@ -1,0 +1,91 @@
+<section class="hero">
+  <div class="hero__background">
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="hero__container">
+    <div class="hero__content">
+      <div class="hero__intro">
+        <span class="hero__label">&lt;Security Researcher /&gt;</span>
+        <h1 class="hero__title">
+          <span class="hero__greeting">Hi, I'm</span>
+          <span class="hero__name glitch" data-text="B1naryBun">B1naryBun</span>
+        </h1>
+        <p class="hero__tagline">
+          <span class="hero__typed">{{ typedText() }}</span>
+          @if (showCursor()) {
+            <span class="cursor"></span>
+          }
+        </p>
+        <div class="hero__cta">
+          <a routerLink="/portfolio" class="btn btn--primary">View My Work</a>
+          <a routerLink="/about" class="btn btn--secondary">About Me</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <app-bunny-scene />
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span>Scroll to explore</span>
+      <div class="hero__scroll-indicator"></div>
+    </div>
+  </div>
+</section>
+
+<section class="skills section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__label">// EXPERTISE</span>
+      <h2 class="section__title">What I Do</h2>
+    </div>
+
+    <div class="skills__grid">
+      @for (skill of skills; track skill.name) {
+        <div class="skills__item">
+          <span class="skills__icon">{{ skill.icon }}</span>
+          <h3 class="skills__name">{{ skill.name }}</h3>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="featured section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__label">// RECENT WORK</span>
+      <h2 class="section__title">Featured Projects</h2>
+    </div>
+
+    <div class="featured__grid">
+      @for (project of featuredProjects; track project.title) {
+        <article class="featured__card card">
+          <h3 class="featured__card-title">{{ project.title }}</h3>
+          <p class="featured__card-desc">{{ project.description }}</p>
+          <div class="featured__card-tags">
+            @for (tag of project.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="featured__cta">
+      <a routerLink="/portfolio" class="btn btn--secondary">View All Projects</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Let's Work Together</h2>
+      <p>Interested in security consulting, penetration testing, or just want to chat about cybersecurity?</p>
+      <a routerLink="/about" class="btn btn--primary">Get In Touch</a>
+    </div>
+  </div>
+</section>

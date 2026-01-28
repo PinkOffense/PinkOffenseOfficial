@@ -8,6 +8,13 @@
     "build:dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "typecheck": "tsc --noEmit",
+    "audit": "npm audit --audit-level=high",
+    "audit:fix": "npm audit fix",
+    "ci": "npm run lint && npm run typecheck && npm run build",
     "deploy": "ng build --base-href /PinkOffenseOfficial/ && npx angular-cli-ghpages --dir=dist/b1narybun-portfolio/browser"
   },
   "prettier": {
@@ -43,6 +50,9 @@
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.0",
     "angular-cli-ghpages": "^3.0.2",
-    "typescript": "~5.9.2"
+    "angular-eslint": "^19.6.0",
+    "eslint": "^9.27.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.32.1"
   }
 }

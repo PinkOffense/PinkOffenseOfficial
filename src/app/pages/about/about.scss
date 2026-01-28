@@ -360,11 +360,15 @@ $text-secondary: #b0b0c0;
 
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   margin-bottom: 3rem;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 576px) {
     grid-template-columns: 1fr;
   }
 }
@@ -381,6 +385,29 @@ $text-secondary: #b0b0c0;
     border-color: $accent-cyan;
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba($accent-cyan, 0.15);
+  }
+
+  &--keybase {
+    border-color: rgba($accent-purple, 0.2);
+
+    &:hover {
+      border-color: $accent-purple;
+      box-shadow: 0 20px 40px rgba($accent-purple, 0.15);
+    }
+
+    .contact-card__icon {
+      color: $accent-purple;
+    }
+
+    .contact-card__link {
+      color: $accent-purple;
+      border-color: rgba($accent-purple, 0.3);
+
+      &:hover {
+        background: rgba($accent-purple, 0.1);
+        border-color: $accent-purple;
+      }
+    }
   }
 
   &--pgp {

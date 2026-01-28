@@ -10,19 +10,20 @@ export class About {
   formSubmitted = signal(false);
 
   skills = [
-    { category: 'Security', items: ['Penetration Testing', 'Web Security', 'Vulnerability Assessment', 'Security Testing'] },
-    { category: 'QA & Testing', items: ['Test Automation', 'Bug Hunting', 'Quality Assurance', 'Test Planning'] },
-    { category: 'Tools', items: ['Burp Suite', 'Nmap', 'OWASP ZAP', 'Postman'] },
-    { category: 'Learning', items: ['CTF Challenges', 'HackTheBox', 'TryHackMe', 'Security Research'] }
+    { category: 'Offensive Security', items: ['Penetration Testing', 'Red Team Operations', 'Vulnerability Analysis', 'Exploit Development'] },
+    { category: 'Application Security', items: ['Web App Pentesting', 'API Security', 'OWASP Top 10', 'Secure Code Review'] },
+    { category: 'Tools', items: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Ghidra'] },
+    { category: 'Platforms', items: ['TryHackMe', 'HackTheBox', 'CTF Competitions', 'Vulnerable Labs'] }
   ];
 
   certifications = [
-    { name: 'Learning', full: 'Currently expanding my security knowledge', status: 'In Progress' }
+    { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
+    { name: 'THM Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
   ];
 
   timeline = [
-    { year: 'Now', title: 'QA Engineer & Aspiring Pentester', description: 'Working in QA while building security skills on the side.' },
-    { year: '2024', title: 'Security Journey', description: 'Started learning penetration testing and participating in CTFs.' }
+    { year: 'Now', title: 'Jr Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
+    { year: '2024', title: 'Security Journey', description: 'Computer Engineer diving deep into offensive security and AppSec.' }
   ];
 
   socialLinks = [

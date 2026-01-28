@@ -16,33 +16,33 @@ export class Home implements OnInit, OnDestroy {
   typedText = signal('');
   showCursor = signal(true);
 
-  private fullText = 'QA by day, pentester in training by night';
+  private fullText = 'Breaking into systems to make them stronger';
   private charIndex = 0;
 
   skills = [
-    { name: 'QA Testing', icon: '🧪' },
-    { name: 'Bug Hunting', icon: '🐛' },
-    { name: 'Web Security', icon: '🌐' },
-    { name: 'CTF Challenges', icon: '🚩' },
-    { name: 'Learning Pentesting', icon: '🔓' },
-    { name: 'Security Tools', icon: '🛠️' }
+    { name: 'Penetration Testing', icon: '🔓' },
+    { name: 'Red Team Operations', icon: '🎯' },
+    { name: 'Web App Security', icon: '🌐' },
+    { name: 'Vulnerability Analysis', icon: '🔍' },
+    { name: 'AppSec', icon: '🛡️' },
+    { name: 'CTF Challenges', icon: '🚩' }
   ];
 
   featuredProjects = [
     {
-      title: 'CTF Writeups',
-      description: 'My solutions and learnings from capture the flag challenges',
-      tags: ['CTF', 'Learning', 'Writeups']
+      title: 'HackTheBox Writeups',
+      description: 'Detailed writeups and walkthroughs from HackTheBox challenges',
+      tags: ['HackTheBox', 'Writeups', 'Pentesting']
     },
     {
-      title: 'Security Notes',
-      description: 'Documentation of my security learning journey',
-      tags: ['Notes', 'Learning', 'Security']
+      title: 'TryHackMe Journey',
+      description: 'Progress and notes from the Jr Penetration Tester path',
+      tags: ['TryHackMe', 'Learning', 'Pentesting']
     },
     {
-      title: 'QA & Security',
-      description: 'Bridging QA testing with security testing practices',
-      tags: ['QA', 'Security', 'Testing']
+      title: 'Vulnerability Research',
+      description: 'Security research and vulnerability analysis projects',
+      tags: ['Research', 'AppSec', 'Analysis']
     }
   ];
 

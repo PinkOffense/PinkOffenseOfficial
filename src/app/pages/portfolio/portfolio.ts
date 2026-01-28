@@ -26,89 +26,64 @@ export class Portfolio {
   activeFilter = signal('all');
 
   categories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'tools', name: 'Security Tools' },
-    { id: 'research', name: 'Research' },
-    { id: 'ctf', name: 'CTF Writeups' },
-    { id: 'web', name: 'Web Security' }
+    { id: 'all', name: 'All Resources' },
+    { id: 'cheatsheet', name: 'Cheat Sheets' },
+    { id: 'certification', name: 'Certification Prep' },
+    { id: 'fundamentals', name: 'Security Fundamentals' }
   ];
 
   projects: Project[] = [
     {
-      id: 'vuln-scanner',
-      title: 'VulnScanner Pro',
-      description: 'Automated vulnerability detection tool for web applications with custom rule engine.',
-      longDescription: 'A comprehensive security scanning tool that identifies OWASP Top 10 vulnerabilities...',
+      id: 'ports-cheatsheet',
+      title: 'Ports Cheatsheet',
+      description: 'Quick reference guide for common ports, services, and their security implications.',
+      longDescription: 'Comprehensive cheatsheet covering well-known ports, their associated services, common vulnerabilities, and pentesting tips for each service.',
       image: '',
-      tags: ['Python', 'Security', 'Automation', 'API'],
-      category: 'tools',
+      tags: ['Cheatsheet', 'Networking', 'Pentesting', 'Reference'],
+      category: 'cheatsheet',
       links: {
-        github: 'https://github.com/PinkOffense'
+        github: 'https://github.com/PinkOffense/Ports-cheatsheet'
       },
       featured: true
     },
     {
-      id: 'malware-sandbox',
-      title: 'Malware Sandbox',
-      description: 'Isolated environment for safe malware analysis and behavior monitoring.',
-      longDescription: 'Dockerized sandbox environment with network isolation for analyzing suspicious files...',
+      id: 'ceh-playbook',
+      title: 'CEH Practical Playbook',
+      description: 'Complete playbook for CEH Practical exam preparation with hands-on techniques.',
+      longDescription: 'Step-by-step guide covering all CEH Practical exam domains including reconnaissance, scanning, enumeration, exploitation, and reporting.',
       image: '',
-      tags: ['Docker', 'Python', 'Malware Analysis'],
-      category: 'tools',
+      tags: ['CEH', 'Certification', 'Playbook', 'Ethical Hacking'],
+      category: 'certification',
       links: {
-        github: 'https://github.com/PinkOffense'
+        github: 'https://github.com/PinkOffense/CEH_Practical_Playbook'
       },
       featured: true
     },
     {
-      id: 'ctf-htb-machines',
-      title: 'HackTheBox Writeups',
-      description: 'Detailed writeups for various HackTheBox machines and challenges.',
-      longDescription: 'Collection of step-by-step guides for solving HTB machines...',
+      id: 'threat-modeling',
+      title: 'Threat Modeling Playbook',
+      description: 'Structured approach to identifying and mitigating security threats in applications.',
+      longDescription: 'Comprehensive guide to threat modeling methodologies including STRIDE, DREAD, attack trees, and practical examples for real-world applications.',
       image: '',
-      tags: ['CTF', 'Pentesting', 'Writeups'],
-      category: 'ctf',
+      tags: ['Threat Modeling', 'AppSec', 'STRIDE', 'Security Design'],
+      category: 'fundamentals',
       links: {
-        writeup: '/blog'
+        github: 'https://github.com/PinkOffense/Threat-modeling-playbook'
       },
       featured: true
     },
     {
-      id: 'xss-research',
-      title: 'XSS Filter Bypass Research',
-      description: 'Research on bypassing modern XSS filters and WAF protections.',
-      longDescription: 'In-depth analysis of various WAF bypass techniques...',
+      id: 'mysql-security',
+      title: 'MySQL Security Playbook',
+      description: 'SQL security playbook focused on MySQL with offensive and defensive techniques.',
+      longDescription: 'In-depth guide covering SQL injection techniques, database hardening, privilege escalation, and secure coding practices for MySQL environments.',
       image: '',
-      tags: ['Research', 'XSS', 'WAF Bypass'],
-      category: 'research',
-      links: {},
-      featured: false
-    },
-    {
-      id: 'api-fuzzer',
-      title: 'API Fuzzer',
-      description: 'Intelligent API endpoint fuzzer with automatic parameter discovery.',
-      longDescription: 'REST API security testing tool with smart fuzzing capabilities...',
-      image: '',
-      tags: ['Go', 'API Security', 'Fuzzing'],
-      category: 'tools',
+      tags: ['MySQL', 'SQL Injection', 'Database Security', 'Hardening'],
+      category: 'fundamentals',
       links: {
-        github: 'https://github.com/PinkOffense'
+        github: 'https://github.com/PinkOffense/MySQL-Cybersecurity-Playbook'
       },
-      featured: false
-    },
-    {
-      id: 'jwt-toolkit',
-      title: 'JWT Security Toolkit',
-      description: 'Tools for testing JWT implementation vulnerabilities.',
-      longDescription: 'Comprehensive toolkit for identifying JWT misconfigurations...',
-      image: '',
-      tags: ['Python', 'JWT', 'Authentication'],
-      category: 'web',
-      links: {
-        github: 'https://github.com/PinkOffense'
-      },
-      featured: false
+      featured: true
     }
   ];
 

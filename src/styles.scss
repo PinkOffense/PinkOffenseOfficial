@@ -1,0 +1,326 @@
+// B1naryBun Portfolio - Cyberpunk Theme
+// Color Palette
+$bg-primary: #0a0a0f;
+$bg-secondary: #12121a;
+$bg-tertiary: #1a1a2e;
+$accent-pink: #ff2d75;
+$accent-cyan: #00f0ff;
+$accent-purple: #b14aed;
+$text-primary: #ffffff;
+$text-secondary: #b0b0c0;
+$text-muted: #6a6a7a;
+
+// Fonts (loaded via index.html)
+$font-display: 'Orbitron', sans-serif;
+$font-body: 'Rajdhani', sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+// Reset & Base
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $text-primary;
+  background-color: $bg-primary;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Selection
+::selection {
+  background: $accent-pink;
+  color: $bg-primary;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $accent-pink;
+  border-radius: 4px;
+
+  &:hover {
+    background: #ff5c94;
+  }
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+a {
+  color: $accent-cyan;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $accent-pink;
+  }
+}
+
+// Utility Classes
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+// Glow Effects
+.glow-pink {
+  text-shadow: 0 0 10px $accent-pink, 0 0 20px $accent-pink, 0 0 40px $accent-pink;
+}
+
+.glow-cyan {
+  text-shadow: 0 0 10px $accent-cyan, 0 0 20px $accent-cyan, 0 0 40px $accent-cyan;
+}
+
+.box-glow-pink {
+  box-shadow: 0 0 20px rgba($accent-pink, 0.3), inset 0 0 20px rgba($accent-pink, 0.1);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 20px rgba($accent-cyan, 0.3), inset 0 0 20px rgba($accent-cyan, 0.1);
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: $font-display;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, $accent-pink, $accent-purple);
+    color: $text-primary;
+    border-color: $accent-pink;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba($accent-pink, 0.4);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: $accent-cyan;
+    border-color: $accent-cyan;
+
+    &:hover {
+      background: rgba($accent-cyan, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba($accent-cyan, 0.2);
+    }
+  }
+}
+
+// Cards
+.card {
+  background: $bg-secondary;
+  border: 1px solid rgba($accent-pink, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $accent-pink;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba($accent-pink, 0.2);
+  }
+}
+
+// Glitch Effect
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    color: $accent-cyan;
+    animation: glitch 2s infinite linear alternate-reverse;
+    z-index: -1;
+  }
+
+  &::after {
+    color: $accent-pink;
+    animation: glitch 3s infinite linear alternate-reverse;
+    z-index: -2;
+  }
+}
+
+// Scanline Effect
+.scanlines {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+}
+
+// Terminal cursor blink
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: $accent-pink;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+  vertical-align: text-bottom;
+}
+
+// Tag styles
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  background: rgba($accent-cyan, 0.1);
+  color: $accent-cyan;
+  border: 1px solid rgba($accent-cyan, 0.3);
+  border-radius: 4px;
+
+  &--pink {
+    background: rgba($accent-pink, 0.1);
+    color: $accent-pink;
+    border-color: rgba($accent-pink, 0.3);
+  }
+}
+
+// Loading animation
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.loading {
+  display: flex;
+  gap: 0.5rem;
+
+  span {
+    width: 10px;
+    height: 10px;
+    background: $accent-pink;
+    border-radius: 50%;
+    animation: pulse 1.4s infinite ease-in-out;
+
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}

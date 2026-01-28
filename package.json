@@ -1,0 +1,48 @@
+{
+  "name": "b1narybun-portfolio",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --base-href /PinkOffenseOfficial/",
+    "build:dev": "ng build --configuration development",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "deploy": "ng build --base-href /PinkOffenseOfficial/ && npx angular-cli-ghpages --dir=dist/b1narybun-portfolio/browser"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@10.9.4",
+  "dependencies": {
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@types/three": "^0.182.0",
+    "marked": "^17.0.1",
+    "ngx-markdown": "^21.0.1",
+    "rxjs": "~7.8.0",
+    "three": "^0.182.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.2",
+    "@angular/cli": "^21.1.2",
+    "@angular/compiler-cli": "^21.1.0",
+    "angular-cli-ghpages": "^3.0.2",
+    "typescript": "~5.9.2"
+  }
+}

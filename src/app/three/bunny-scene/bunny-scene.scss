@@ -1,0 +1,114 @@
+$accent-pink: #ff2d75;
+$accent-cyan: #00f0ff;
+$bg-primary: #0a0a0f;
+
+.bunny-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+
+  &__canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($bg-primary, 0.9);
+    z-index: 10;
+
+    &-content {
+      text-align: center;
+    }
+
+    &-spinner {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.5rem;
+      border: 3px solid rgba($accent-pink, 0.2);
+      border-top-color: $accent-pink;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    &-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    &-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba($accent-pink, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 0 auto 0.5rem;
+    }
+
+    &-progress {
+      height: 100%;
+      background: linear-gradient(90deg, $accent-pink, $accent-cyan);
+      transition: width 0.3s ease;
+    }
+
+    &-percent {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: $accent-cyan;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: $accent-pink;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  &__hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(#fff, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    animation: fadeInOut 3s ease-in-out infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}

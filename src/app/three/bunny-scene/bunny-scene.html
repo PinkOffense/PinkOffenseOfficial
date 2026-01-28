@@ -1,0 +1,29 @@
+<div class="bunny-scene">
+  <canvas #canvas class="bunny-scene__canvas"></canvas>
+
+  @if (loading()) {
+    <div class="bunny-scene__loading">
+      <div class="bunny-scene__loading-content">
+        <div class="bunny-scene__loading-spinner"></div>
+        <p class="bunny-scene__loading-text">Loading B1naryBun...</p>
+        <div class="bunny-scene__loading-bar">
+          <div
+            class="bunny-scene__loading-progress"
+            [style.width.%]="loadingProgress()"
+          ></div>
+        </div>
+        <span class="bunny-scene__loading-percent">{{ loadingProgress() }}%</span>
+      </div>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="bunny-scene__error">
+      <p>{{ error() }}</p>
+    </div>
+  }
+
+  <div class="bunny-scene__hint">
+    <span>Drag to rotate</span>
+  </div>
+</div>

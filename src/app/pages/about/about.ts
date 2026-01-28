@@ -10,29 +10,24 @@ export class About {
   formSubmitted = signal(false);
 
   skills = [
-    { category: 'Offensive Security', items: ['Penetration Testing', 'Red Team Operations', 'Exploit Development', 'Social Engineering'] },
-    { category: 'Web Security', items: ['OWASP Top 10', 'API Security', 'Authentication Bypass', 'XSS/SQLi/CSRF'] },
-    { category: 'Tools & Frameworks', items: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Ghidra'] },
-    { category: 'Programming', items: ['Python', 'JavaScript', 'Go', 'Bash', 'Assembly'] }
+    { category: 'Offensive Security', items: ['Penetration Testing', 'Red Team Operations', 'Vulnerability Analysis', 'Exploit Development'] },
+    { category: 'Application Security', items: ['Web App Pentesting', 'API Security', 'OWASP Top 10', 'Secure Code Review'] },
+    { category: 'Tools', items: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Ghidra'] },
+    { category: 'Platforms', items: ['TryHackMe', 'HackTheBox', 'CTF Competitions', 'Vulnerable Labs'] }
   ];
 
   certifications = [
-    { name: 'OSCP', full: 'Offensive Security Certified Professional', status: 'In Progress' },
-    { name: 'CEH', full: 'Certified Ethical Hacker', status: 'Certified' },
-    { name: 'CompTIA Security+', full: 'CompTIA Security+', status: 'Certified' }
+    { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
+    { name: 'THM Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
   ];
 
   timeline = [
-    { year: '2024', title: 'Security Researcher', description: 'Started independent security research and bug bounty hunting.' },
-    { year: '2023', title: 'CTF Competitor', description: 'Began competing in capture the flag competitions.' },
-    { year: '2022', title: 'Learning Journey', description: 'Started learning cybersecurity through self-study and online courses.' }
+    { year: 'Now', title: 'Jr Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
+    { year: '2024', title: 'Security Journey', description: 'Computer Engineer diving deep into offensive security and AppSec.' }
   ];
 
   socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/PinkOffense', icon: 'github' },
-    { name: 'LinkedIn', url: '#', icon: 'linkedin' },
-    { name: 'Twitter', url: '#', icon: 'twitter' },
-    { name: 'HackTheBox', url: '#', icon: 'htb' }
+    { name: 'GitHub', url: 'https://github.com/PinkOffense', icon: 'github' }
   ];
 
   onSubmit(event: Event): void {

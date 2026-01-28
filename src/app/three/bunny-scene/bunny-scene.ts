@@ -85,7 +85,7 @@ export class BunnyScene implements AfterViewInit, OnDestroy {
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
     this.controls.autoRotate = true;
-    this.controls.autoRotateSpeed = 1.5;
+    this.controls.autoRotateSpeed = 3.5;
     this.controls.minPolarAngle = Math.PI / 3;
     this.controls.maxPolarAngle = Math.PI / 1.8;
 

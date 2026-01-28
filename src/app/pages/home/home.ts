@@ -16,33 +16,33 @@ export class Home implements OnInit, OnDestroy {
   typedText = signal('');
   showCursor = signal(true);
 
-  private fullText = 'Breaking things to make them stronger';
+  private fullText = 'Breaking into systems to make them stronger';
   private charIndex = 0;
 
   skills = [
     { name: 'Penetration Testing', icon: '🔓' },
-    { name: 'Vulnerability Research', icon: '🔍' },
-    { name: 'Malware Analysis', icon: '🦠' },
-    { name: 'Web Application Security', icon: '🌐' },
-    { name: 'Network Security', icon: '📡' },
-    { name: 'Reverse Engineering', icon: '⚙️' }
+    { name: 'Red Team Operations', icon: '🎯' },
+    { name: 'Web App Security', icon: '🌐' },
+    { name: 'Vulnerability Analysis', icon: '🔍' },
+    { name: 'AppSec', icon: '🛡️' },
+    { name: 'CTF Challenges', icon: '🚩' }
   ];
 
   featuredProjects = [
     {
-      title: 'Security Scanner',
-      description: 'Automated vulnerability detection tool for web applications',
-      tags: ['Python', 'Security', 'Automation']
+      title: 'HackTheBox Writeups',
+      description: 'Detailed writeups and walkthroughs from HackTheBox challenges',
+      tags: ['HackTheBox', 'Writeups', 'Pentesting']
     },
     {
-      title: 'CTF Writeups',
-      description: 'Collection of capture the flag challenge solutions',
-      tags: ['CTF', 'Writeups', 'Learning']
+      title: 'TryHackMe Journey',
+      description: 'Progress and notes from the Jr Penetration Tester path',
+      tags: ['TryHackMe', 'Learning', 'Pentesting']
     },
     {
-      title: 'Exploit Development',
-      description: 'Research and responsible disclosure of vulnerabilities',
-      tags: ['Research', 'CVE', 'Exploits']
+      title: 'Vulnerability Research',
+      description: 'Security research and vulnerability analysis projects',
+      tags: ['Research', 'AppSec', 'Analysis']
     }
   ];
 

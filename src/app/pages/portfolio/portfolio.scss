@@ -315,6 +315,18 @@ $text-secondary: #b0b0c0;
     svg {
       transition: transform 0.3s ease;
     }
+
+    &--docs {
+      color: $accent-pink;
+      background: rgba($accent-pink, 0.1);
+      border-color: rgba($accent-pink, 0.2);
+
+      &:hover {
+        background: $accent-pink;
+        border-color: $accent-pink;
+        box-shadow: 0 4px 20px rgba($accent-pink, 0.3);
+      }
+    }
   }
 }
 

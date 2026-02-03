@@ -1,5 +1,16 @@
 [
   {
+    "id": "DevSecOps Professional Playbook",
+    "title": "Based on TryHackMe DevSecOps Learning Path",
+    "excerpt": "A DevSecOps integrates security practices within the DevOps process, emphasizing security at every stage of the software development lifecycle.",
+    "date": "2026-02-03",
+    "readTime": "12 min read",
+    "category": "technical-analysis",
+    "tags": ["DevSecOps Path"],
+    "featured": true,
+    "file": "DevSecOps_Professional_Playbook_TryHackMe.md"
+  },
+  {
     "id": "attack-path-analysis",
     "title": "Attack Path Analysis: Chaining Misconfigurations to Domain Compromise",
     "excerpt": "A case study on how seemingly low-risk findings — web application flaws combined with privilege escalation vectors — can lead to full domain compromise.",

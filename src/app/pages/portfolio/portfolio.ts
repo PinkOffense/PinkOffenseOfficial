@@ -28,8 +28,8 @@ export class Portfolio {
 
   categories = [
     { id: 'all', name: 'All Resources' },
-    { id: 'cheatsheet', name: 'Cheat Sheets' },
-    { id: 'certification', name: 'Certification Prep' },
+    { id: 'cheatsheet', name: 'Quick Reference' },
+    { id: 'methodology', name: 'Methodologies' },
     { id: 'fundamentals', name: 'Security Fundamentals' }
   ];
 
@@ -53,12 +53,12 @@ export class Portfolio {
     },
     {
       id: 'ceh-playbook',
-      title: 'CEH Practical Playbook',
-      description: 'Complete playbook for CEH Practical exam preparation with hands-on techniques.',
-      longDescription: 'Step-by-step guide covering all CEH Practical exam domains including reconnaissance, scanning, enumeration, exploitation, and reporting.',
+      title: 'Penetration Testing Playbook',
+      description: 'End-to-end methodology covering reconnaissance, enumeration, exploitation, and professional reporting.',
+      longDescription: 'Step-by-step guide covering all penetration testing phases including reconnaissance, scanning, enumeration, exploitation, post-exploitation, and executive reporting.',
       image: '',
-      tags: ['CEH', 'Certification', 'Playbook', 'Ethical Hacking'],
-      category: 'certification',
+      tags: ['Pentesting', 'Methodology', 'Playbook', 'PTES'],
+      category: 'methodology',
       links: {
         github: 'https://github.com/PinkOffense/CEH_Practical_Playbook'
       },
@@ -67,11 +67,11 @@ export class Portfolio {
     {
       id: 'threat-modeling',
       title: 'Threat Modeling Playbook',
-      description: 'Structured approach to identifying and mitigating security threats in applications.',
-      longDescription: 'Comprehensive guide to threat modeling methodologies including STRIDE, DREAD, attack trees, and practical examples for real-world applications.',
+      description: 'Structured approach to threat identification and risk prioritization for application security.',
+      longDescription: 'Comprehensive guide to threat modeling methodologies including STRIDE, DREAD, attack trees, and practical examples for enterprise applications.',
       image: '',
-      tags: ['Threat Modeling', 'AppSec', 'STRIDE', 'Security Design'],
-      category: 'fundamentals',
+      tags: ['Threat Modeling', 'STRIDE', 'Risk Assessment', 'Security Architecture'],
+      category: 'methodology',
       links: {
         github: 'https://github.com/PinkOffense/Threat-modeling-playbook'
       },
@@ -80,8 +80,8 @@ export class Portfolio {
     {
       id: 'mysql-security',
       title: 'MySQL Security Playbook',
-      description: 'SQL security playbook focused on MySQL with offensive and defensive techniques.',
-      longDescription: 'In-depth guide covering SQL injection techniques, database hardening, privilege escalation, and secure coding practices for MySQL environments.',
+      description: 'Database security assessment guide covering SQL injection vectors, privilege escalation, and hardening best practices.',
+      longDescription: 'In-depth guide covering SQL injection techniques, database hardening, privilege escalation, and secure configuration practices for MySQL environments in enterprise deployments.',
       image: '',
       tags: ['MySQL', 'SQL Injection', 'Database Security', 'Hardening'],
       category: 'fundamentals',

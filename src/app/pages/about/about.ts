@@ -13,20 +13,20 @@ export class About {
   pgpCopied = signal(false);
 
   readonly skills = [
-    { category: 'Offensive Security', items: ['Penetration Testing', 'Red Team Operations', 'Vulnerability Analysis', 'Exploit Development'] },
-    { category: 'Application Security', items: ['Web App Pentesting', 'API Security', 'OWASP Top 10', 'Secure Code Review'] },
-    { category: 'Tools', items: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Ghidra'] },
-    { category: 'Platforms', items: ['TryHackMe', 'HackTheBox', 'CTF Competitions', 'Vulnerable Labs'] }
+    { category: 'Offensive Security', items: ['Penetration Testing (Network & Infrastructure)', 'Red Team Engagements', 'Vulnerability Assessment & Management', 'Exploit Development & Weaponization'] },
+    { category: 'Application Security', items: ['Web & API Penetration Testing', 'OWASP Top 10 / ASVS Assessment', 'Secure Code Review', 'Threat Modeling (STRIDE / DREAD)'] },
+    { category: 'Tooling & Automation', items: ['Burp Suite Professional', 'Metasploit Framework', 'Nmap / Nessus / OpenVAS', 'Wireshark / Ghidra / IDA'] },
+    { category: 'Frameworks & Methodologies', items: ['PTES (Penetration Testing Execution Standard)', 'OWASP Testing Guide v4', 'MITRE ATT&CK Framework', 'NIST Cybersecurity Framework'] }
   ] as const;
 
   readonly certifications = [
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
-    { name: 'THM Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
+    { name: 'OSCP', full: 'Offensive Security Certified Professional', status: 'Planned' }
   ] as const;
 
   readonly timeline = [
-    { year: 'Now', title: 'Pentester & Security Researcher', description: 'Focused on penetration testing, red team operations, and vulnerability analysis.' },
-    { year: '2024', title: 'Security Journey', description: 'Computer Engineer diving deep into offensive security and AppSec.' }
+    { year: 'Now', title: 'Offensive Security Consultant', description: 'Delivering penetration testing, red team assessments, and security architecture reviews for organizations.' },
+    { year: '2024', title: 'Security Engineer', description: 'Computer Engineer specializing in offensive security, application security, and vulnerability research.' }
   ] as const;
 
   private readonly pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----

@@ -22,27 +22,27 @@ export class Blog {
 
   categories = [
     { id: 'all', name: 'All Posts' },
-    { id: 'ctf', name: 'CTF Writeups' },
+    { id: 'technical-analysis', name: 'Technical Analysis' },
     { id: 'research', name: 'Research' },
-    { id: 'tutorials', name: 'Tutorials' },
-    { id: 'news', name: 'Security News' }
+    { id: 'methodology', name: 'Methodology' },
+    { id: 'industry', name: 'Industry Insights' }
   ];
 
   posts: BlogPost[] = [
     {
-      id: 'htb-machine-writeup',
-      title: 'HackTheBox: Pwning the "CyberVault" Machine',
-      excerpt: 'A detailed walkthrough of exploiting a vulnerable web application and escalating privileges to root on this medium-difficulty HTB machine.',
+      id: 'attack-path-analysis',
+      title: 'Attack Path Analysis: Chaining Misconfigurations to Domain Compromise',
+      excerpt: 'A case study on how seemingly low-risk findings — web application flaws combined with privilege escalation vectors — can lead to full domain compromise.',
       date: '2026-01-15',
       readTime: '12 min read',
-      category: 'ctf',
-      tags: ['HackTheBox', 'Linux', 'Privilege Escalation'],
+      category: 'technical-analysis',
+      tags: ['Attack Path', 'Active Directory', 'Privilege Escalation'],
       featured: true
     },
     {
       id: 'jwt-vulnerabilities',
-      title: 'Common JWT Security Vulnerabilities and How to Exploit Them',
-      excerpt: 'Exploring the most common JWT implementation flaws including algorithm confusion, weak secrets, and improper validation.',
+      title: 'JWT Implementation Flaws: Assessment Methodology and Remediation',
+      excerpt: 'A structured approach to identifying JWT security weaknesses including algorithm confusion, key management issues, and token validation bypasses.',
       date: '2026-01-10',
       readTime: '8 min read',
       category: 'research',
@@ -50,29 +50,29 @@ export class Blog {
       featured: true
     },
     {
-      id: 'burp-suite-guide',
-      title: 'Getting Started with Burp Suite for Web App Testing',
-      excerpt: 'A beginner-friendly guide to setting up and using Burp Suite for web application penetration testing.',
+      id: 'web-app-assessment-methodology',
+      title: 'Structuring a Web Application Penetration Test: A Practical Methodology',
+      excerpt: 'How to scope, execute, and report on web application security assessments aligned with OWASP Testing Guide and PTES.',
       date: '2026-01-05',
       readTime: '15 min read',
-      category: 'tutorials',
-      tags: ['Burp Suite', 'Tools', 'Web Testing'],
+      category: 'methodology',
+      tags: ['OWASP', 'PTES', 'Web App Testing'],
       featured: false
     },
     {
       id: 'sql-injection-deep-dive',
-      title: 'SQL Injection: From Basics to Advanced Exploitation',
-      excerpt: 'Comprehensive guide covering blind SQLi, time-based attacks, and advanced WAF bypass techniques.',
+      title: 'Advanced SQL Injection: WAF Bypass Techniques and Remediation Strategies',
+      excerpt: 'Analysis of blind SQLi, time-based attacks, and WAF evasion methods — with practical remediation guidance for development teams.',
       date: '2025-12-28',
       readTime: '20 min read',
-      category: 'tutorials',
+      category: 'technical-analysis',
       tags: ['SQL Injection', 'Web Security', 'OWASP'],
       featured: false
     },
     {
       id: 'cve-analysis',
-      title: 'Analyzing CVE-2025-XXXXX: A Critical RCE Vulnerability',
-      excerpt: 'Deep dive into a recently disclosed remote code execution vulnerability, including root cause analysis and PoC development.',
+      title: 'CVE Root Cause Analysis: Understanding a Critical RCE Vulnerability',
+      excerpt: 'Deep dive into a recently disclosed remote code execution vulnerability — root cause analysis, impact assessment, and organizational defense strategies.',
       date: '2025-12-20',
       readTime: '10 min read',
       category: 'research',
@@ -80,13 +80,13 @@ export class Blog {
       featured: false
     },
     {
-      id: 'security-news-roundup',
-      title: 'Security News Roundup: January 2026',
-      excerpt: 'Monthly roundup of the most significant security events, breaches, and vulnerability disclosures.',
+      id: 'threat-landscape-review',
+      title: 'Threat Landscape Review: Key Trends for Security Teams — January 2026',
+      excerpt: 'Monthly analysis of significant security events, emerging attack vectors, and actionable intelligence for defensive teams.',
       date: '2026-01-20',
       readTime: '5 min read',
-      category: 'news',
-      tags: ['News', 'Industry', 'Breaches'],
+      category: 'industry',
+      tags: ['Threat Intelligence', 'Industry', 'Trends'],
       featured: false
     }
   ];

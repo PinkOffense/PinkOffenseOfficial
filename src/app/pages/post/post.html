@@ -1,0 +1,59 @@
+@if (loading()) {
+  <section class="post-loading">
+    <div class="container">
+      <div class="post-loading__spinner"></div>
+      <p>Loading article...</p>
+    </div>
+  </section>
+} @else if (error()) {
+  <section class="post-error">
+    <div class="container">
+      <h1>Article Not Found</h1>
+      <p>The requested article could not be loaded.</p>
+      <a routerLink="/blog" class="btn btn--primary">Back to Blog</a>
+    </div>
+  </section>
+} @else if (post(); as postData) {
+  <section class="post-hero">
+    <div class="container">
+      <a routerLink="/blog" class="post-hero__back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Blog
+      </a>
+      <div class="post-hero__meta">
+        <span class="post-hero__category">{{ postData.category }}</span>
+        <span class="post-hero__separator">|</span>
+        <span class="post-hero__date">{{ formatDate(postData.date) }}</span>
+        <span class="post-hero__separator">|</span>
+        <span class="post-hero__read-time">{{ postData.readTime }}</span>
+      </div>
+      <h1 class="post-hero__title">{{ postData.title }}</h1>
+      <div class="post-hero__tags">
+        @for (tag of postData.tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <article class="post-content section">
+    <div class="container">
+      <div class="post-content__body">
+        <markdown [data]="content()" />
+      </div>
+    </div>
+  </article>
+
+  <section class="post-footer section">
+    <div class="container">
+      <a routerLink="/blog" class="btn btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Blog
+      </a>
+    </div>
+  </section>
+}

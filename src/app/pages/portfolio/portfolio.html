@@ -1,9 +1,9 @@
 <section class="portfolio-hero">
   <div class="container">
     <span class="portfolio-hero__label">&lt;/resources&gt;</span>
-    <h1 class="portfolio-hero__title">Red Team Resources</h1>
+    <h1 class="portfolio-hero__title">Security Resources</h1>
     <p class="portfolio-hero__subtitle">
-      Playbooks, cheat sheets, and security fundamentals. Open-source resources for offensive security.
+      Assessment methodologies, reference guides, and security frameworks. Open-source resources for security professionals.
     </p>
   </div>
 </section>
@@ -29,7 +29,7 @@
           [class.project-card--featured]="project.featured"
           [class.project-card--guide]="project.category === 'guide'"
           [class.project-card--cheatsheet]="project.category === 'cheatsheet'"
-          [class.project-card--certification]="project.category === 'certification'"
+          [class.project-card--methodology]="project.category === 'methodology'"
           [class.project-card--fundamentals]="project.category === 'fundamentals'"
         >
           <div class="project-card__glow"></div>
@@ -44,7 +44,7 @@
               @switch (project.category) {
                 @case ('guide') { <span>&#x1F525;</span> }
                 @case ('cheatsheet') { <span>&#x1F4CB;</span> }
-                @case ('certification') { <span>&#x1F3C6;</span> }
+                @case ('methodology') { <span>&#x1F3C6;</span> }
                 @case ('fundamentals') { <span>&#x1F4D6;</span> }
                 @default { <span>&#x1F4C1;</span> }
               }
@@ -57,7 +57,7 @@
               @switch (project.category) {
                 @case ('guide') { Guide }
                 @case ('cheatsheet') { Cheat Sheet }
-                @case ('certification') { Certification Prep }
+                @case ('methodology') { Methodology }
                 @case ('fundamentals') { Security Fundamentals }
                 @default { Resource }
               }
@@ -125,8 +125,8 @@
 <section class="cta-section section">
   <div class="container">
     <div class="cta-box">
-      <h2>Want to Contribute?</h2>
-      <p>All resources are open-source. Feel free to contribute, suggest improvements, or use them in your security journey.</p>
+      <h2>Collaborate</h2>
+      <p>All resources are open-source. Contributions, feedback, and professional collaboration are welcome.</p>
       <a href="https://github.com/PinkOffense" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
         View GitHub Profile
       </a>

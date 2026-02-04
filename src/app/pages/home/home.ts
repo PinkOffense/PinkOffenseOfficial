@@ -16,33 +16,33 @@ export class Home implements OnInit, OnDestroy {
   typedText = signal('');
   showCursor = signal(true);
 
-  private fullText = 'Breaking into systems to make them stronger';
+  private fullText = 'Identifying vulnerabilities before adversaries do';
   private charIndex = 0;
 
   skills = [
     { name: 'Penetration Testing', icon: '🔓' },
     { name: 'Red Team Operations', icon: '🎯' },
     { name: 'Web App Security', icon: '🌐' },
-    { name: 'Vulnerability Analysis', icon: '🔍' },
-    { name: 'AppSec', icon: '🛡️' },
-    { name: 'CTF Challenges', icon: '🚩' }
+    { name: 'Vulnerability Assessment', icon: '🔍' },
+    { name: 'Security Architecture Review', icon: '🛡️' },
+    { name: 'Threat Modeling', icon: '📐' }
   ];
 
   featuredProjects = [
     {
-      title: 'HackTheBox Writeups',
-      description: 'Detailed writeups and walkthroughs from HackTheBox challenges',
-      tags: ['HackTheBox', 'Writeups', 'Pentesting']
+      title: 'Threat Modeling Playbook',
+      description: 'Structured methodology for identifying and mitigating threats using STRIDE, DREAD, and attack trees.',
+      tags: ['STRIDE', 'Threat Analysis', 'Risk Assessment']
     },
     {
-      title: 'TryHackMe Journey',
-      description: 'Progress and notes from the Jr Penetration Tester path',
-      tags: ['TryHackMe', 'Learning', 'Pentesting']
+      title: 'Security Assessment Frameworks',
+      description: 'Open-source playbooks aligned with PTES and OWASP Testing Guide for consistent, repeatable assessments.',
+      tags: ['PTES', 'OWASP', 'Methodology']
     },
     {
       title: 'Vulnerability Research',
-      description: 'Security research and vulnerability analysis projects',
-      tags: ['Research', 'AppSec', 'Analysis']
+      description: 'Technical analysis of CVEs, root cause breakdowns, and proof-of-concept development.',
+      tags: ['CVE Analysis', 'AppSec', 'Research']
     }
   ];
 

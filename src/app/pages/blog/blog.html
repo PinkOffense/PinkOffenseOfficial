@@ -3,7 +3,7 @@
     <span class="blog-hero__label">&lt;/blog&gt;</span>
     <h1 class="blog-hero__title">Security Blog</h1>
     <p class="blog-hero__subtitle">
-      CTF writeups, security research, tutorials, and thoughts on the ever-evolving world of cybersecurity.
+      Technical analysis, vulnerability research, assessment methodologies, and industry insights for security professionals.
     </p>
   </div>
 </section>
@@ -29,7 +29,7 @@
               <span class="featured-post-card__separator">|</span>
               <span class="featured-post-card__read-time">{{ post.readTime }}</span>
             </div>
-            <a href="#" class="featured-post-card__link">
+            <a [routerLink]="['/blog', post.id]" class="featured-post-card__link">
               Read Article
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -63,39 +63,45 @@
       </div>
     </div>
 
-    <div class="blog-posts__list">
-      @for (post of filteredPosts; track post.id) {
-        <article class="post-card">
-          <div class="post-card__content">
-            <div class="post-card__meta">
-              <span class="post-card__date">{{ formatDate(post.date) }}</span>
-              <span class="post-card__separator">|</span>
-              <span class="post-card__category">{{ post.category }}</span>
+    @if (loading()) {
+      <div class="blog-posts__empty">
+        <p>Loading articles...</p>
+      </div>
+    } @else {
+      <div class="blog-posts__list">
+        @for (post of filteredPosts; track post.id) {
+          <article class="post-card">
+            <div class="post-card__content">
+              <div class="post-card__meta">
+                <span class="post-card__date">{{ formatDate(post.date) }}</span>
+                <span class="post-card__separator">|</span>
+                <span class="post-card__category">{{ post.category }}</span>
+              </div>
+              <h3 class="post-card__title">{{ post.title }}</h3>
+              <p class="post-card__excerpt">{{ post.excerpt }}</p>
+              <div class="post-card__tags">
+                @for (tag of post.tags; track tag) {
+                  <span class="tag">{{ tag }}</span>
+                }
+              </div>
             </div>
-            <h3 class="post-card__title">{{ post.title }}</h3>
-            <p class="post-card__excerpt">{{ post.excerpt }}</p>
-            <div class="post-card__tags">
-              @for (tag of post.tags; track tag) {
-                <span class="tag">{{ tag }}</span>
-              }
+            <div class="post-card__action">
+              <span class="post-card__read-time">{{ post.readTime }}</span>
+              <a [routerLink]="['/blog', post.id]" class="post-card__link">
+                Read
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
+          </article>
+        } @empty {
+          <div class="blog-posts__empty">
+            <p>No posts found in this category.</p>
           </div>
-          <div class="post-card__action">
-            <span class="post-card__read-time">{{ post.readTime }}</span>
-            <a href="#" class="post-card__link">
-              Read
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </article>
-      } @empty {
-        <div class="blog-posts__empty">
-          <p>No posts found in this category.</p>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
   </div>
 </section>
 
@@ -103,7 +109,7 @@
   <div class="container">
     <div class="subscribe-box">
       <h2>Stay Updated</h2>
-      <p>Get notified about new posts, CTF writeups, and security research.</p>
+      <p>Get notified about new technical analysis, vulnerability research, and industry insights.</p>
       <form class="subscribe-form" (submit)="$event.preventDefault()">
         <input type="email" placeholder="Enter your email" class="subscribe-form__input" />
         <button type="submit" class="btn btn--primary">Subscribe</button>

@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Project {
   id: string;
@@ -19,7 +20,7 @@ interface Project {
 
 @Component({
   selector: 'app-portfolio',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss'
 })
@@ -28,6 +29,7 @@ export class Portfolio {
 
   categories = [
     { id: 'all', name: 'All Resources' },
+    { id: 'guide', name: 'Guides' },
     { id: 'cheatsheet', name: 'Cheat Sheets' },
     { id: 'certification', name: 'Certification Prep' },
     { id: 'fundamentals', name: 'Security Fundamentals' }
@@ -37,6 +39,20 @@ export class Portfolio {
   readonly gitbookBase = 'https://app.gitbook.com/o/C4SLjqM3jsSUG0q8KSNr/s/l92m5iq51vnxdrB0qDAD';
 
   projects: Project[] = [
+    {
+      id: 'burp-suite-guide',
+      title: 'Burp Suite Offensive Guide',
+      description: 'Comprehensive Burp Suite guide for red team operations and advanced web application pentesting.',
+      longDescription: 'Expert-level guide covering all Burp Suite tools, extensions, evasion techniques, attack chaining, payload development, API hacking, and red team operations.',
+      image: '',
+      tags: ['Burp Suite', 'Web AppSec', 'Red Team', 'Pentesting'],
+      category: 'guide',
+      links: {
+        github: 'https://github.com/PinkOffense/burp-suite-guide',
+        demo: '/guides/burp-suite'
+      },
+      featured: true
+    },
     {
       id: 'ports-cheatsheet',
       title: 'Ports Cheatsheet',

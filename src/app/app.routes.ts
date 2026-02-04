@@ -22,6 +22,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about/about').then(m => m.About)
   },
   {
+    path: 'guides/burp-suite',
+    loadComponent: () => import('./pages/guides/burp-suite/burp-suite').then(m => m.BurpSuite)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

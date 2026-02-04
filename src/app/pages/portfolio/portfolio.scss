@@ -192,6 +192,16 @@ $text-secondary: #b0b0c0;
     .project-card__category { color: $accent-green; }
   }
 
+  &--guide {
+    .project-card__category-bar { background: $accent-pink; }
+    .project-card__icon {
+      background: rgba($accent-pink, 0.15);
+      border-color: rgba($accent-pink, 0.3);
+      color: $accent-pink;
+    }
+    .project-card__category { color: $accent-pink; }
+  }
+
   &__glow {
     position: absolute;
     top: -50%;

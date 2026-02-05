@@ -1,9 +1,10 @@
 import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { BunnyScene } from '../../three/bunny-scene/bunny-scene';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [BunnyScene],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })

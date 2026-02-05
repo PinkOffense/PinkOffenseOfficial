@@ -9,6 +9,7 @@ interface Writeup {
   tags: string[];
   date: string;
   url?: string;
+  status?: 'Completed' | 'In Progress';
 }
 
 @Component({
@@ -29,18 +30,28 @@ export class Writeups {
   ];
 
   writeups: Writeup[] = [
-    // Add your writeups here
-    // Example:
-    // {
-    //   id: 'dvwa-sqli',
-    //   title: 'DVWA SQL Injection',
-    //   description: 'Complete walkthrough of SQL injection vulnerabilities in DVWA from low to impossible security levels.',
-    //   platform: 'tryhackme',
-    //   difficulty: 'Easy',
-    //   tags: ['SQL Injection', 'Web', 'OWASP'],
-    //   date: '2024-01-15',
-    //   url: '/blog/dvwa-sqli'
-    // }
+    {
+      id: 'advent-of-cyber-2024',
+      title: 'Advent of Cyber 2024',
+      description: 'Completed the TryHackMe Christmas challenge covering various security topics including web exploitation, forensics, and malware analysis.',
+      platform: 'tryhackme',
+      difficulty: 'Easy',
+      tags: ['Web', 'Forensics', 'Malware', 'OSINT'],
+      date: '2024-12-25',
+      url: 'https://tryhackme.com/r/christmas',
+      status: 'Completed'
+    },
+    {
+      id: 'jr-pentester-path',
+      title: 'Jr Penetration Tester Path',
+      description: 'Learning path covering pentesting fundamentals, web application security, Burp Suite, network security, and privilege escalation techniques.',
+      platform: 'tryhackme',
+      difficulty: 'Medium',
+      tags: ['Pentesting', 'Web AppSec', 'Network', 'Privilege Escalation'],
+      date: '2025-02-05',
+      url: 'https://tryhackme.com/r/path/jrpenetrationtester',
+      status: 'In Progress'
+    }
   ];
 
   get filteredWriteups(): Writeup[] {

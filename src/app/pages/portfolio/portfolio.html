@@ -73,17 +73,6 @@
 
           <div class="project-card__footer">
             <div class="project-card__links">
-              @if (project.links.docs) {
-                <a [href]="project.links.docs" target="_blank" rel="noopener noreferrer" class="project-card__link project-card__link--docs">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.806 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2zm0 14H5V5c0-.806.55-.988 1-1h13v12z"/>
-                  </svg>
-                  <span>Read Docs</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                  </svg>
-                </a>
-              }
               @if (project.links.github) {
                 <a [href]="project.links.github" target="_blank" rel="noopener noreferrer" class="project-card__link">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

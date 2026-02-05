@@ -27,10 +27,9 @@
         <article
           class="project-card"
           [class.project-card--featured]="project.featured"
-          [class.project-card--guide]="project.category === 'guide'"
+          [class.project-card--playbook]="project.category === 'playbook'"
           [class.project-card--cheatsheet]="project.category === 'cheatsheet'"
-          [class.project-card--methodology]="project.category === 'methodology'"
-          [class.project-card--fundamentals]="project.category === 'fundamentals'"
+          [class.project-card--tool]="project.category === 'tool'"
         >
           <div class="project-card__glow"></div>
 
@@ -42,10 +41,9 @@
             }
             <div class="project-card__icon">
               @switch (project.category) {
-                @case ('guide') { <span>&#x1F525;</span> }
+                @case ('playbook') { <span>&#x1F4D6;</span> }
                 @case ('cheatsheet') { <span>&#x1F4CB;</span> }
-                @case ('methodology') { <span>&#x1F3C6;</span> }
-                @case ('fundamentals') { <span>&#x1F4D6;</span> }
+                @case ('tool') { <span>&#x1F527;</span> }
                 @default { <span>&#x1F4C1;</span> }
               }
             </div>
@@ -55,10 +53,9 @@
             <h3 class="project-card__title">{{ project.title }}</h3>
             <span class="project-card__category">
               @switch (project.category) {
-                @case ('guide') { Guide }
-                @case ('cheatsheet') { Cheat Sheet }
-                @case ('methodology') { Methodology }
-                @case ('fundamentals') { Security Fundamentals }
+                @case ('playbook') { Playbook }
+                @case ('cheatsheet') { Cheatsheet }
+                @case ('tool') { Tool }
                 @default { Resource }
               }
             </span>

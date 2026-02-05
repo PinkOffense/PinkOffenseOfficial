@@ -13,20 +13,15 @@ export class About {
   pgpCopied = signal(false);
 
   readonly skills = [
-    { category: 'Offensive Security', items: ['Penetration Testing (Network & Infrastructure)', 'Red Team Engagements', 'Vulnerability Assessment & Management', 'Exploit Development & Weaponization'] },
-    { category: 'Application Security', items: ['Web & API Penetration Testing', 'OWASP Top 10 / ASVS Assessment', 'Secure Code Review', 'Threat Modeling (STRIDE / DREAD)'] },
-    { category: 'Tooling & Automation', items: ['Burp Suite Professional', 'Metasploit Framework', 'Nmap / Nessus / OpenVAS', 'Wireshark / Ghidra / IDA'] },
-    { category: 'Frameworks & Methodologies', items: ['PTES (Penetration Testing Execution Standard)', 'OWASP Testing Guide v4', 'MITRE ATT&CK Framework', 'NIST Cybersecurity Framework'] }
+    { category: 'Reconnaissance', items: ['Nmap', 'Nikto', 'Gobuster / Dirb', 'enum4linux'] },
+    { category: 'Exploitation', items: ['Metasploit Framework', 'SQLMap', 'Searchsploit', 'Hydra / John the Ripper'] },
+    { category: 'Web Application', items: ['Burp Suite Community', 'OWASP ZAP', 'OWASP Top 10', 'SQL Injection / XSS'] },
+    { category: 'Post-Exploitation', items: ['Netcat', 'LinPEAS / WinPEAS', 'Privilege Escalation', 'Python / Bash Scripting'] }
   ] as const;
 
   readonly certifications = [
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
-    { name: 'OSCP', full: 'Offensive Security Certified Professional', status: 'Planned' }
-  ] as const;
-
-  readonly timeline = [
-    { year: 'Now', title: 'Offensive Security Consultant', description: 'Delivering penetration testing, red team assessments, and security architecture reviews for organizations.' },
-    { year: '2024', title: 'Security Engineer', description: 'Computer Engineer specializing in offensive security, application security, and vulnerability research.' }
+    { name: 'Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
   ] as const;
 
   private readonly pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----

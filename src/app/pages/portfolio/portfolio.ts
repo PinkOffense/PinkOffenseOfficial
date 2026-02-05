@@ -11,7 +11,6 @@ interface Project {
   category: string;
   links: {
     github?: string;
-    docs?: string;
     demo?: string;
     writeup?: string;
   };
@@ -34,9 +33,6 @@ export class Portfolio {
     { id: 'methodology', name: 'Methodologies' },
     { id: 'fundamentals', name: 'Security Fundamentals' }
   ];
-
-  // GitBook base URL - update this after GitBook sync
-  readonly gitbookBase = 'https://app.gitbook.com/o/C4SLjqM3jsSUG0q8KSNr/s/l92m5iq51vnxdrB0qDAD';
 
   projects: Project[] = [
     {
@@ -62,8 +58,7 @@ export class Portfolio {
       tags: ['Cheatsheet', 'Networking', 'Pentesting', 'Reference'],
       category: 'cheatsheet',
       links: {
-        github: 'https://github.com/PinkOffense/Ports-cheatsheet',
-        docs: 'https://app.gitbook.com/o/C4SLjqM3jsSUG0q8KSNr/s/l92m5iq51vnxdrB0qDAD'
+        github: 'https://github.com/PinkOffense/Ports-cheatsheet'
       },
       featured: true
     },

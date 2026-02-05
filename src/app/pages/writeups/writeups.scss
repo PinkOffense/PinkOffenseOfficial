@@ -270,10 +270,35 @@ $text-secondary: #b0b0c0;
     border-top: 1px solid rgba(#fff, 0.05);
   }
 
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   &__date {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     color: $text-secondary;
+  }
+
+  &__status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $accent-green;
+    background: rgba($accent-green, 0.15);
+    border: 1px solid rgba($accent-green, 0.3);
+
+    &--progress {
+      color: $accent-orange;
+      background: rgba($accent-orange, 0.15);
+      border-color: rgba($accent-orange, 0.3);
+    }
   }
 
   &__link {

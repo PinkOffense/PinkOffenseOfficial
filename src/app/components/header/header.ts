@@ -15,7 +15,6 @@ export class Header {
     { path: '/portfolio', label: 'Portfolio', exact: false },
     { path: '/guides/burp-suite', label: 'Guides', exact: false },
     { path: '/writeups', label: 'Writeups', exact: false },
-    { path: '/blog', label: 'Blog', exact: false },
     { path: '/about', label: 'About', exact: false }
   ];
 

@@ -21,7 +21,8 @@ export class About {
 
   readonly certifications = [
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
-    { name: 'Jr Pentester', full: 'TryHackMe Jr Penetration Tester Path', status: 'In Progress' }
+    { name: 'CompTIA CySA+', full: 'CompTIA Cybersecurity Analyst', status: 'In Progress' },
+    { name: 'ISO 27001', full: 'ISO/IEC 27001 Lead Implementer', status: 'In Progress' }
   ] as const;
 
   private readonly pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----

@@ -1,0 +1,83 @@
+<section class="writeups-hero">
+  <div class="container">
+    <span class="writeups-hero__label">&lt;/writeups&gt;</span>
+    <h1 class="writeups-hero__title">Writeups</h1>
+    <p class="writeups-hero__subtitle">
+      CTF solutions, machine walkthroughs, and vulnerability research documentation.
+    </p>
+  </div>
+</section>
+
+<section class="writeups section">
+  <div class="container">
+    <div class="writeups__filters">
+      @for (platform of platforms; track platform.id) {
+        <button
+          class="writeups__filter"
+          [class.writeups__filter--active]="activeFilter() === platform.id"
+          (click)="setFilter(platform.id)"
+        >
+          {{ platform.name }}
+        </button>
+      }
+    </div>
+
+    @if (filteredWriteups.length === 0) {
+      <div class="writeups__empty">
+        <div class="writeups__empty-icon">&#x1F4DD;</div>
+        <h3>Coming Soon</h3>
+        <p>Writeups will be added here as I complete challenges and document my findings.</p>
+        <div class="writeups__platforms-preview">
+          <span class="platform-badge platform-badge--tryhackme">&#x1F3AF; TryHackMe</span>
+          <span class="platform-badge platform-badge--hackthebox">&#x1F4E6; HackTheBox</span>
+          <span class="platform-badge platform-badge--ctf">&#x1F6A9; CTF</span>
+          <span class="platform-badge platform-badge--research">&#x1F52C; Research</span>
+        </div>
+      </div>
+    } @else {
+      <div class="writeups__grid">
+        @for (writeup of filteredWriteups; track writeup.id) {
+          <article [class]="'writeup-card writeup-card--' + writeup.platform">
+            <div class="writeup-card__header">
+              <span class="writeup-card__platform">
+                {{ getPlatformIcon(writeup.platform) }}
+                @switch (writeup.platform) {
+                  @case ('tryhackme') { TryHackMe }
+                  @case ('hackthebox') { HackTheBox }
+                  @case ('ctf') { CTF }
+                  @case ('research') { Research }
+                }
+              </span>
+              <span [class]="'writeup-card__difficulty ' + getDifficultyClass(writeup.difficulty)">
+                {{ writeup.difficulty }}
+              </span>
+            </div>
+
+            <div class="writeup-card__content">
+              <h3 class="writeup-card__title">{{ writeup.title }}</h3>
+              <p class="writeup-card__description">{{ writeup.description }}</p>
+
+              <div class="writeup-card__tags">
+                @for (tag of writeup.tags; track tag) {
+                  <span class="tag">{{ tag }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="writeup-card__footer">
+              <span class="writeup-card__date">{{ writeup.date }}</span>
+              @if (writeup.url) {
+                <a [href]="writeup.url" class="writeup-card__link">
+                  Read Writeup
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

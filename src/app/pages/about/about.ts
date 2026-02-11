@@ -13,20 +13,23 @@ export class About {
   pgpCopied = signal(false);
 
   readonly skills = [
-    { category: 'Offensive Security', items: ['Penetration Testing (Network & Infrastructure)', 'Red Team Engagements', 'Vulnerability Assessment & Management', 'Exploit Development & Weaponization'] },
-    { category: 'Application Security', items: ['Web & API Penetration Testing', 'OWASP Top 10 / ASVS Assessment', 'Secure Code Review', 'Threat Modeling (STRIDE / DREAD)'] },
-    { category: 'Tooling & Automation', items: ['Burp Suite Professional', 'Metasploit Framework', 'Nmap / Nessus / OpenVAS', 'Wireshark / Ghidra / IDA'] },
-    { category: 'Frameworks & Methodologies', items: ['PTES (Penetration Testing Execution Standard)', 'OWASP Testing Guide v4', 'MITRE ATT&CK Framework', 'NIST Cybersecurity Framework'] }
+    { category: 'Security Learning', items: ['TryHackMe & CTF Challenges', 'Hands-on Lab Environments', 'Vulnerability Research', 'Security Tool Exploration'] },
+    { category: 'Professional Background', items: ['Quality Assurance Management', 'Test Strategy & Planning', 'Software Testing (Manual & Automated)', 'Bug Tracking & Quality Processes'] },
+    { category: 'Tools & Technologies', items: ['Burp Suite', 'Nmap & Wireshark', 'Kali Linux', 'Test Automation Frameworks'] },
+    { category: 'Standards & Frameworks', items: ['ISTQB / CTFL Methodology', 'OWASP Top 10', 'ISO 27001 Awareness', 'Agile & DevOps Practices'] }
   ] as const;
 
   readonly certifications = [
+    { name: 'CTFL', full: 'ISTQB Certified Tester Foundation Level', status: 'Completed' },
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
-    { name: 'OSCP', full: 'Offensive Security Certified Professional', status: 'Planned' }
+    { name: 'CySA+', full: 'CompTIA Cybersecurity Analyst', status: 'In Progress' },
+    { name: 'ISO 27001', full: 'Information Security Management', status: 'In Progress' }
   ] as const;
 
   readonly timeline = [
-    { year: 'Now', title: 'Offensive Security Consultant', description: 'Delivering penetration testing, red team assessments, and security architecture reviews for organizations.' },
-    { year: '2024', title: 'Security Engineer', description: 'Computer Engineer specializing in offensive security, application security, and vulnerability research.' }
+    { year: 'Now', title: 'Security Enthusiast', description: 'Building offensive security skills through CTF challenges, lab environments, and pursuing industry certifications.' },
+    { year: '2021+', title: 'Quality Assurance Professional', description: 'Over 3 years leading QA teams, developing test strategies, and ensuring software quality across multiple projects.' },
+    { year: 'Education', title: 'Computer Engineering', description: 'Bachelor\'s degree providing foundation in software development, systems architecture, and technical problem-solving.' }
   ] as const;
 
   private readonly pgpPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----

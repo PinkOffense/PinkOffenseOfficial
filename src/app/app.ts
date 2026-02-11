@@ -26,5 +26,5 @@ import { Footer } from './components/footer/footer';
   `]
 })
 export class App {
-  title = 'B1naryBun';
+  title = 'PinkOffense';
 }

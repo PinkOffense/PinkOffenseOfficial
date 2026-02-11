@@ -54,7 +54,7 @@ jobs:
 
       - name: Add security headers file
         run: |
-          cat > ./dist/b1narybun-portfolio/browser/_headers << 'EOF'
+          cat > ./dist/pinkoffense-portfolio/browser/_headers << 'EOF'
           /*
             X-Frame-Options: DENY
             X-Content-Type-Options: nosniff
@@ -70,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/b1narybun-portfolio/browser'
+          path: './dist/pinkoffense-portfolio/browser'
 
   deploy:
     environment:

@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "b1narybun-portfolio": {
+    "pinkoffense-portfolio": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -96,10 +96,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "b1narybun-portfolio:build:production"
+              "buildTarget": "pinkoffense-portfolio:build:production"
             },
             "development": {
-              "buildTarget": "b1narybun-portfolio:build:development"
+              "buildTarget": "pinkoffense-portfolio:build:development"
             }
           },
           "defaultConfiguration": "development"

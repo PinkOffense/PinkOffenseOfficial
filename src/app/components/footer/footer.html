@@ -33,6 +33,17 @@
           }
         </nav>
       </div>
+
+      <div class="footer__links">
+        <h4>Resources</h4>
+        <nav>
+          @for (link of resourceLinks; track link.name) {
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+              {{ link.name }}
+            </a>
+          }
+        </nav>
+      </div>
     </div>
 
     <div class="footer__bottom">

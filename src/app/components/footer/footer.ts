@@ -15,4 +15,11 @@ export class Footer {
     { name: 'TryHackMe', url: 'https://tryhackme.com/p/RitaBorges' },
     { name: 'Keybase', url: 'https://keybase.io/pinkoffense2' }
   ];
+
+  resourceLinks = [
+    { name: 'MITRE ATT&CK', url: 'https://attack.mitre.org' },
+    { name: 'GTFOBins', url: 'https://gtfobins.github.io' },
+    { name: 'LOLBAS', url: 'https://lolbas-project.github.io' },
+    { name: 'HackerOne', url: 'https://hackerone.com/hacktivity' }
+  ];
 }

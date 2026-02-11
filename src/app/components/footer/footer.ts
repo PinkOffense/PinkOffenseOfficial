@@ -17,9 +17,9 @@ export class Footer {
   ];
 
   resourceLinks = [
-    { name: 'CVE', url: 'https://cve.org' },
-    { name: 'NVD', url: 'https://nvd.nist.gov' },
-    { name: 'Exploit-DB', url: 'https://exploit-db.com' },
-    { name: 'VulnHub', url: 'https://vulnhub.com' }
+    { name: 'MITRE ATT&CK', url: 'https://attack.mitre.org' },
+    { name: 'GTFOBins', url: 'https://gtfobins.github.io' },
+    { name: 'LOLBAS', url: 'https://lolbas-project.github.io' },
+    { name: 'HackerOne', url: 'https://hackerone.com/hacktivity' }
   ];
 }

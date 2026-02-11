@@ -15,4 +15,11 @@ export class Footer {
     { name: 'TryHackMe', url: 'https://tryhackme.com/p/RitaBorges' },
     { name: 'Keybase', url: 'https://keybase.io/pinkoffense2' }
   ];
+
+  resourceLinks = [
+    { name: 'CVE', url: 'https://cve.org' },
+    { name: 'NVD', url: 'https://nvd.nist.gov' },
+    { name: 'Exploit-DB', url: 'https://exploit-db.com' },
+    { name: 'VulnHub', url: 'https://vulnhub.com' }
+  ];
 }

@@ -27,9 +27,9 @@
         <article
           class="project-card"
           [class.project-card--featured]="project.featured"
+          [class.project-card--playbook]="project.category === 'playbook'"
           [class.project-card--cheatsheet]="project.category === 'cheatsheet'"
-          [class.project-card--methodology]="project.category === 'methodology'"
-          [class.project-card--fundamentals]="project.category === 'fundamentals'"
+          [class.project-card--tool]="project.category === 'tool'"
         >
           <div class="project-card__glow"></div>
 
@@ -41,9 +41,9 @@
             }
             <div class="project-card__icon">
               @switch (project.category) {
+                @case ('playbook') { <span>&#x1F4D6;</span> }
                 @case ('cheatsheet') { <span>&#x1F4CB;</span> }
-                @case ('methodology') { <span>&#x1F3C6;</span> }
-                @case ('fundamentals') { <span>&#x1F4D6;</span> }
+                @case ('tool') { <span>&#x1F527;</span> }
                 @default { <span>&#x1F4C1;</span> }
               }
             </div>
@@ -53,9 +53,9 @@
             <h3 class="project-card__title">{{ project.title }}</h3>
             <span class="project-card__category">
               @switch (project.category) {
-                @case ('cheatsheet') { Cheat Sheet }
-                @case ('methodology') { Methodology }
-                @case ('fundamentals') { Security Fundamentals }
+                @case ('playbook') { Playbook }
+                @case ('cheatsheet') { Cheatsheet }
+                @case ('tool') { Tool }
                 @default { Resource }
               }
             </span>
@@ -70,17 +70,6 @@
 
           <div class="project-card__footer">
             <div class="project-card__links">
-              @if (project.links.docs) {
-                <a [href]="project.links.docs" target="_blank" rel="noopener noreferrer" class="project-card__link project-card__link--docs">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.806 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2zm0 14H5V5c0-.806.55-.988 1-1h13v12z"/>
-                  </svg>
-                  <span>Read Docs</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                  </svg>
-                </a>
-              }
               @if (project.links.github) {
                 <a [href]="project.links.github" target="_blank" rel="noopener noreferrer" class="project-card__link">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -93,10 +82,13 @@
                 </a>
               }
               @if (project.links.demo) {
-                <a [href]="project.links.demo" target="_blank" rel="noopener noreferrer" class="project-card__link">
-                  <span>Live Demo</span>
+                <a [routerLink]="project.links.demo" class="project-card__link project-card__link--docs">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <span>Read Guide</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </a>
               }

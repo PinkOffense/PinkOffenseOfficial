@@ -162,6 +162,16 @@ $text-secondary: #b0b0c0;
   }
 
   // Category-specific styles
+  &--playbook {
+    .project-card__category-bar { background: $accent-pink; }
+    .project-card__icon {
+      background: rgba($accent-pink, 0.15);
+      border-color: rgba($accent-pink, 0.3);
+      color: $accent-pink;
+    }
+    .project-card__category { color: $accent-pink; }
+  }
+
   &--cheatsheet {
     .project-card__category-bar { background: $accent-cyan; }
     .project-card__icon {
@@ -172,17 +182,7 @@ $text-secondary: #b0b0c0;
     .project-card__category { color: $accent-cyan; }
   }
 
-  &--methodology {
-    .project-card__category-bar { background: $accent-orange; }
-    .project-card__icon {
-      background: rgba($accent-orange, 0.15);
-      border-color: rgba($accent-orange, 0.3);
-      color: $accent-orange;
-    }
-    .project-card__category { color: $accent-orange; }
-  }
-
-  &--fundamentals {
+  &--tool {
     .project-card__category-bar { background: $accent-green; }
     .project-card__icon {
       background: rgba($accent-green, 0.15);

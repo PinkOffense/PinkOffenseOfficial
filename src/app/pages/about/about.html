@@ -23,11 +23,7 @@
         </div>
       </div>
       <div class="about-hero__visual">
-        <div class="about-hero__avatar">
-          <div class="about-hero__avatar-glow"></div>
-          <div class="about-hero__avatar-ring"></div>
-          <span class="about-hero__avatar-icon">&#x2726;</span>
-        </div>
+        <app-bunny-scene />
       </div>
     </div>
   </div>
@@ -76,27 +72,6 @@
   </div>
 </section>
 
-<section class="timeline-section section">
-  <div class="container">
-    <div class="section__header">
-      <span class="section__label">// JOURNEY</span>
-      <h2 class="section__title">Professional Experience</h2>
-    </div>
-
-    <div class="timeline">
-      @for (item of timeline; track item.year) {
-        <div class="timeline__item">
-          <span class="timeline__year">{{ item.year }}</span>
-          <div class="timeline__content">
-            <h3 class="timeline__title">{{ item.title }}</h3>
-            <p class="timeline__description">{{ item.description }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
 <section class="contact-section section" id="contact">
   <div class="container">
     <div class="section__header">
@@ -106,20 +81,29 @@
 
     <div class="contact-cards">
       <div class="contact-card">
-        <div class="contact-card__icon">&#x2709;</div>
-        <h3 class="contact-card__title">Email</h3>
-        <p class="contact-card__text">For collaboration and connecting</p>
-        <a href="mailto:pinkoffenseofficial&#64;gmail.com" class="contact-card__link">
-          pinkoffenseofficial&#64;gmail.com
-        </a>
-      </div>
-
-      <div class="contact-card">
         <div class="contact-card__icon">&#x2318;</div>
         <h3 class="contact-card__title">GitHub</h3>
         <p class="contact-card__text">Open-source security tooling and research</p>
         <a href="https://github.com/PinkOffense" target="_blank" rel="noopener noreferrer" class="contact-card__link">
           github.com/PinkOffense
+        </a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card__icon">&#x1F4BC;</div>
+        <h3 class="contact-card__title">LinkedIn</h3>
+        <p class="contact-card__text">Professional networking and opportunities</p>
+        <a href="https://www.linkedin.com/in/aritaborges" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+          linkedin.com/in/aritaborges
+        </a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card__icon">&#x1F3AF;</div>
+        <h3 class="contact-card__title">TryHackMe</h3>
+        <p class="contact-card__text">CTF challenges and learning progress</p>
+        <a href="https://tryhackme.com/p/RitaBorges" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+          tryhackme.com/p/RitaBorges
         </a>
       </div>
 
@@ -131,19 +115,6 @@
           keybase.io/pinkoffense2
         </a>
       </div>
-
-      <div class="contact-card contact-card--pgp">
-        <div class="contact-card__icon">&#x1F510;</div>
-        <h3 class="contact-card__title">Encrypted Contact</h3>
-        <p class="contact-card__text">For vulnerability disclosures and sensitive matters</p>
-        <button class="contact-card__link contact-card__pgp-btn" (click)="copyPgpKey()">
-          {{ pgpCopied() ? 'Copied!' : 'Copy PGP Public Key' }}
-        </button>
-      </div>
-    </div>
-
-    <div class="contact-note">
-      <p>&#x26A0; For responsible disclosure of security vulnerabilities, please use encrypted email.</p>
     </div>
   </div>
 </section>

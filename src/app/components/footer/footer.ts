@@ -12,7 +12,6 @@ export class Footer {
 
   socialLinks = [
     { name: 'GitHub', url: 'https://github.com/PinkOffense' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/aritaborges' },
     { name: 'TryHackMe', url: 'https://tryhackme.com/p/RitaBorges' },
     { name: 'Keybase', url: 'https://keybase.io/pinkoffense2' }
   ];

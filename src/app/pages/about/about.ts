@@ -16,7 +16,6 @@ export class About {
   ] as const;
 
   readonly certifications = [
-    { name: 'CTFL', full: 'ISTQB Certified Tester Foundation Level', status: 'Completed' },
     { name: 'CEH Practical', full: 'Certified Ethical Hacker Practical', status: 'In Progress' },
     { name: 'CySA+', full: 'CompTIA Cybersecurity Analyst', status: 'In Progress' },
     { name: 'ISO 27001', full: 'Information Security Management', status: 'In Progress' }
